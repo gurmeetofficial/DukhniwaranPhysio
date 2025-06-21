@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { SEOHead, getArticleSchema } from "@/components/seo/seo-head";
 import { 
   MapPin, 
   Phone, 
@@ -67,6 +68,12 @@ export default function Contact() {
 
   return (
     <div className="py-16 bg-gray-50">
+      <SEOHead
+        title="Contact Dukhniwaran Physiotherapy Clinic Panipat | Book Appointment"
+        description="Contact Dukhniwaran Physiotherapy in Panipat. Call +91-9876543210 for appointments. Located at 123 Health Street, Medical District. Working hours: Mon-Fri 9AM-6PM, Sat 9AM-2PM."
+        keywords="contact physiotherapy Panipat, Dukhniwaran Physiotherapy address, physiotherapy clinic Panipat phone number, book appointment physiotherapy Panipat, physiotherapy clinic working hours"
+        schema={getArticleSchema("Contact Dukhniwaran Physiotherapy", "Get in touch with our physiotherapy clinic in Panipat")}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
@@ -223,17 +230,22 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Google Maps Placeholder */}
+        {/* Google Maps */}
         <div className="mt-12">
           <Card className="p-4">
             <CardContent className="p-0">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Find Us Here</h3>
-              <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <MapPin className="h-12 w-12 mx-auto mb-2" />
-                  <p className="text-lg font-medium">Google Maps Integration</p>
-                  <p className="text-sm">Location: 123 Health Street, Medical District</p>
-                </div>
+              <h3 className="font-heading text-xl font-bold text-gray-900 mb-4">Find Us Here</h3>
+              <div className="w-full h-96 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27998.594991064587!2d76.9635!3d29.3909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390deb2e5f0b0e3b%3A0x4e5b0b0b0b0b0b0b!2sPanipat%2C%20Haryana!5e0!3m2!1sen!2sin!4v1234567890123"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Dukhniwaran Physiotherapy Clinic Location in Panipat"
+                />
               </div>
             </CardContent>
           </Card>

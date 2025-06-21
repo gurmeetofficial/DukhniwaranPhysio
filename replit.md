@@ -121,9 +121,33 @@ This is a full-stack web application for Dukhniwaran Physiotherapy Clinic, built
 - **Build Command**: `npm run build`
 - **Start Command**: `npm run start`
 
-## Changelog
-- June 21, 2025. Initial setup
+## Recent Changes
+
+### June 21, 2025 - Major Updates
+- ✓ Added comprehensive physiotherapist management system for admin
+- ✓ Implemented complete SEO optimization with structured data
+- ✓ Enhanced typography with Inter and Poppins fonts
+- ✓ Added advanced animations and visual effects
+- ✓ Integrated Google Maps for location display
+- ✓ Updated all pages with location-specific content for Panipat
+- ✓ Added API routes for physiotherapist CRUD operations
+- ✓ Enhanced admin panel with team management capabilities
+
+### SEO Features Added
+- Meta tags optimization for all pages
+- Structured data (JSON-LD) for business information
+- Location-specific keywords targeting Panipat
+- Open Graph and Twitter Card meta tags
+- Canonical URLs and proper heading structure
+
+### Typography & Design Enhancements
+- Google Fonts integration (Inter + Poppins)
+- Custom animations and transitions
+- Gradient text effects and custom shadows
+- Improved spacing and visual hierarchy
+- Enhanced mobile responsiveness
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Requested features: Admin management for physiotherapists, SEO optimization, enhanced typography.

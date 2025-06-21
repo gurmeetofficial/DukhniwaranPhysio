@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useAuth } from "@/components/auth/auth-provider";
 import { Link } from "wouter";
+import { SEOHead, getArticleSchema } from "@/components/seo/seo-head";
 import { CalendarCheck, Clock, User, Edit, X } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Therapy, Booking, InsertBooking } from "@shared/schema";
@@ -174,6 +175,12 @@ export default function Booking() {
 
   return (
     <div className="py-16 bg-white">
+      <SEOHead
+        title="Book Physiotherapy Appointment Online Panipat | Dukhniwaran Physiotherapy"
+        description="Book your physiotherapy appointment online at Dukhniwaran Physiotherapy Panipat. Choose from cupping therapy, dry needling, IASTM, and more. Easy online booking system."
+        keywords="book physiotherapy appointment Panipat, online appointment booking physiotherapy, Dukhniwaran Physiotherapy booking, physiotherapy appointment Panipat, book therapy session online"
+        schema={getArticleSchema("Book Physiotherapy Appointment", "Online appointment booking for physiotherapy services in Panipat")}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">

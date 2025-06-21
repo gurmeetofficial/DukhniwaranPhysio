@@ -1,27 +1,12 @@
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { SEOHead, getArticleSchema } from "@/components/seo/seo-head";
 
 export default function About() {
-  const teamMembers = [
-    {
-      name: "Dr. Sarah Miller",
-      role: "Lead Physiotherapist",
-      description: "15+ years experience in orthopedic rehabilitation and sports injury treatment.",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
-    },
-    {
-      name: "Dr. James Wilson", 
-      role: "Senior Therapist",
-      description: "Specialist in manual therapy, dry needling, and chronic pain management.",
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
-    },
-    {
-      name: "Dr. Lisa Zhang",
-      role: "Rehabilitation Specialist", 
-      description: "Expert in neurological rehabilitation and postural correction therapy.",
-      image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
-    }
-  ];
+  const { data: teamMembers } = useQuery<any[]>({
+    queryKey: ["/api/physiotherapists"],
+  });
 
   const highlights = [
     "Licensed Professionals",
@@ -32,17 +17,23 @@ export default function About() {
 
   return (
     <div className="py-16">
+      <SEOHead
+        title="About Us | Expert Physiotherapy Team in Panipat | Dukhniwaran Physiotherapy"
+        description="Meet our expert physiotherapy team in Panipat. Dr. Sarah Miller, Dr. James Wilson, and Dr. Lisa Zhang provide specialized treatment with 15+ years of experience."
+        keywords="physiotherapy team Panipat, Dr Sarah Miller physiotherapist, expert physiotherapists Panipat, about Dukhniwaran Physiotherapy, physiotherapy clinic team"
+        schema={getArticleSchema("About Dukhniwaran Physiotherapy Team", "Professional physiotherapy team in Panipat with specialized expertise")}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              About Dukhniwaran Physiotherapy
+            <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-6 text-balance">
+              About Dukhniwaran Physiotherapy - Panipat's Premier Clinic
             </h1>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              With over a decade of experience in physiotherapy and rehabilitation, Dukhniwaran Physiotherapy has been serving the community with dedication and expertise. Our clinic specializes in traditional and modern treatment methods to provide comprehensive healthcare solutions.
+            <p className="text-lg text-gray-600 mb-6 leading-relaxed font-light">
+              With over a decade of experience in physiotherapy and rehabilitation, Dukhniwaran Physiotherapy has been serving Panipat and surrounding communities with dedication and expertise. Our clinic specializes in traditional and modern treatment methods to provide comprehensive healthcare solutions.
             </p>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Our mission is to help patients achieve optimal health and wellness through personalized treatment plans, compassionate care, and evidence-based practices. We believe in treating the whole person, not just the symptoms.
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
+              Our mission is to help patients in Panipat achieve optimal health and wellness through personalized treatment plans, compassionate care, and evidence-based practices. We believe in treating the whole person, not just the symptoms.
             </p>
             
             <div className="grid sm:grid-cols-2 gap-6">
@@ -51,7 +42,7 @@ export default function About() {
                   <div className="bg-medical-blue rounded-full p-2 mr-3">
                     <Check className="text-white h-4 w-4" />
                   </div>
-                  <span className="text-gray-700">{highlight}</span>
+                  <span className="text-gray-700 font-medium">{highlight}</span>
                 </div>
               ))}
             </div>
@@ -59,29 +50,30 @@ export default function About() {
           <div>
             <img 
               src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-              alt="Physiotherapy team working with patient" 
-              className="rounded-2xl shadow-lg w-full h-auto"
+              alt="Dukhniwaran Physiotherapy team working with patient in Panipat clinic" 
+              className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
 
         {/* Team Section */}
         <div className="mt-16">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 text-center mb-12">
-            Meet Our Expert Team
+          <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 text-center mb-12 text-balance">
+            Meet Our Expert Physiotherapy Team in Panipat
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <Card key={index} className="text-center">
+            {teamMembers?.map((member, index) => (
+              <Card key={index} className="text-center hover:shadow-custom transition-all duration-300 hover:-translate-y-2">
                 <CardContent className="pt-6">
                   <img 
                     src={member.image}
-                    alt={`${member.name} - ${member.role}`}
-                    className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                    alt={`${member.name} - ${member.role} at Dukhniwaran Physiotherapy Panipat`}
+                    className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-medical-blue/20 shadow-lg"
                   />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
+                  <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
                   <p className="text-medical-blue font-medium mb-2">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-2">{member.description}</p>
+                  <p className="text-gray-500 text-xs">{member.experience} • {member.specializations}</p>
                 </CardContent>
               </Card>
             ))}

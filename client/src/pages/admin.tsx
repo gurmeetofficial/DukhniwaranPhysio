@@ -23,7 +23,7 @@ import {
   Plus,
   Clock
 } from "lucide-react";
-import type { Booking, Therapy, Contact, InsertTherapy } from "@shared/schema";
+import type { Booking, Therapy, Contact, InsertTherapy, Physiotherapist, InsertPhysiotherapist } from "@shared/schema";
 
 export default function Admin() {
   const { user } = useAuth();
@@ -31,12 +31,22 @@ export default function Admin() {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("bookings");
   const [isAddingTherapy, setIsAddingTherapy] = useState(false);
+  const [isAddingPhysiotherapist, setIsAddingPhysiotherapist] = useState(false);
+  const [editingPhysiotherapist, setEditingPhysiotherapist] = useState<Physiotherapist | null>(null);
   const [newTherapy, setNewTherapy] = useState({
     name: "",
     description: "",
     priceMin: "",
     priceMax: "",
     duration: "",
+  });
+  const [newPhysiotherapist, setNewPhysiotherapist] = useState({
+    name: "",
+    role: "",
+    description: "",
+    image: "",
+    experience: "",
+    specializations: "",
   });
 
   // Redirect if not admin
@@ -55,6 +65,10 @@ export default function Admin() {
 
   const { data: contacts, isLoading: contactsLoading } = useQuery<Contact[]>({
     queryKey: ["/api/contacts"],
+  });
+
+  const { data: physiotherapists, isLoading: physiotherapistsLoading } = useQuery<Physiotherapist[]>({
+    queryKey: ["/api/physiotherapists"],
   });
 
   const updateBookingMutation = useMutation({
@@ -115,6 +129,41 @@ export default function Admin() {
     });
   };
 
+  const handleAddPhysiotherapist = (e: React.FormEvent) => {
+    e.preventDefault();
+    addPhysiotherapistMutation.mutate({
+      name: newPhysiotherapist.name,
+      role: newPhysiotherapist.role,
+      description: newPhysiotherapist.description,
+      image: newPhysiotherapist.image || null,
+      experience: newPhysiotherapist.experience,
+      specializations: newPhysiotherapist.specializations,
+      isActive: true,
+    });
+  };
+
+  const handleUpdatePhysiotherapist = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingPhysiotherapist) return;
+    
+    updatePhysiotherapistMutation.mutate({
+      id: editingPhysiotherapist.id,
+      name: editingPhysiotherapist.name,
+      role: editingPhysiotherapist.role,
+      description: editingPhysiotherapist.description,
+      image: editingPhysiotherapist.image,
+      experience: editingPhysiotherapist.experience,
+      specializations: editingPhysiotherapist.specializations,
+      isActive: editingPhysiotherapist.isActive,
+    });
+  };
+
+  const handleDeletePhysiotherapist = (id: number) => {
+    if (confirm("Are you sure you want to remove this physiotherapist?")) {
+      deletePhysiotherapistMutation.mutate(id);
+    }
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "confirmed":
@@ -139,7 +188,7 @@ export default function Admin() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="bookings" className="flex items-center">
               <CalendarCheck className="mr-2 h-4 w-4" />
               Bookings
@@ -147,6 +196,10 @@ export default function Admin() {
             <TabsTrigger value="therapies" className="flex items-center">
               <Settings className="mr-2 h-4 w-4" />
               Therapies
+            </TabsTrigger>
+            <TabsTrigger value="physiotherapists" className="flex items-center">
+              <User className="mr-2 h-4 w-4" />
+              Team
             </TabsTrigger>
             <TabsTrigger value="contacts" className="flex items-center">
               <Mail className="mr-2 h-4 w-4" />
@@ -380,19 +433,275 @@ export default function Admin() {
                 ) : (
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {therapies?.map((therapy) => (
-                      <Card key={therapy.id}>
+                      <Card key={therapy.id} className="hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
-                          <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                            {therapy.name}
-                          </h4>
-                          <p className="text-gray-600 mb-4 text-sm">{therapy.description}</p>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{therapy.name}</h3>
+                          <p className="text-gray-600 text-sm mb-4">{therapy.description}</p>
                           <div className="flex items-center justify-between">
-                            <span className="text-medical-blue font-semibold">
+                            <span className="text-medical-blue font-medium">
                               ₹{therapy.priceMin} - ₹{therapy.priceMax}
                             </span>
-                            <Badge variant="outline">
-                              {therapy.duration} min
-                            </Badge>
+                            <span className="text-gray-500 text-sm">{therapy.duration} min</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="physiotherapists">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  Manage Team Members
+                  <Button
+                    onClick={() => setIsAddingPhysiotherapist(true)}
+                    className="bg-medical-blue hover:bg-medical-dark text-white"
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Member
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {isAddingPhysiotherapist && (
+                  <Card className="mb-6">
+                    <CardHeader>
+                      <CardTitle>Add New Team Member</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <form onSubmit={handleAddPhysiotherapist} className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="physio-name">Name</Label>
+                            <Input
+                              id="physio-name"
+                              value={newPhysiotherapist.name}
+                              onChange={(e) => setNewPhysiotherapist({ ...newPhysiotherapist, name: e.target.value })}
+                              required
+                              placeholder="Dr. John Doe"
+                              className="mt-1"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="physio-role">Role</Label>
+                            <Input
+                              id="physio-role"
+                              value={newPhysiotherapist.role}
+                              onChange={(e) => setNewPhysiotherapist({ ...newPhysiotherapist, role: e.target.value })}
+                              required
+                              placeholder="Senior Physiotherapist"
+                              className="mt-1"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <Label htmlFor="physio-description">Description</Label>
+                          <Textarea
+                            id="physio-description"
+                            value={newPhysiotherapist.description}
+                            onChange={(e) => setNewPhysiotherapist({ ...newPhysiotherapist, description: e.target.value })}
+                            required
+                            placeholder="Brief description about the physiotherapist"
+                            className="mt-1"
+                          />
+                        </div>
+                        <div className="grid grid-cols-3 gap-4">
+                          <div>
+                            <Label htmlFor="physio-experience">Experience</Label>
+                            <Input
+                              id="physio-experience"
+                              value={newPhysiotherapist.experience}
+                              onChange={(e) => setNewPhysiotherapist({ ...newPhysiotherapist, experience: e.target.value })}
+                              required
+                              placeholder="10+ years"
+                              className="mt-1"
+                            />
+                          </div>
+                          <div className="col-span-2">
+                            <Label htmlFor="physio-specializations">Specializations</Label>
+                            <Input
+                              id="physio-specializations"
+                              value={newPhysiotherapist.specializations}
+                              onChange={(e) => setNewPhysiotherapist({ ...newPhysiotherapist, specializations: e.target.value })}
+                              required
+                              placeholder="Sports Injury, Manual Therapy, Dry Needling"
+                              className="mt-1"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <Label htmlFor="physio-image">Image URL (optional)</Label>
+                          <Input
+                            id="physio-image"
+                            value={newPhysiotherapist.image}
+                            onChange={(e) => setNewPhysiotherapist({ ...newPhysiotherapist, image: e.target.value })}
+                            placeholder="https://example.com/image.jpg"
+                            className="mt-1"
+                          />
+                        </div>
+                        <div className="flex space-x-2">
+                          <Button
+                            type="submit"
+                            disabled={addPhysiotherapistMutation.isPending}
+                            className="bg-medical-blue hover:bg-medical-dark text-white"
+                          >
+                            {addPhysiotherapistMutation.isPending ? "Adding..." : "Add Member"}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => setIsAddingPhysiotherapist(false)}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </form>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {editingPhysiotherapist && (
+                  <Card className="mb-6">
+                    <CardHeader>
+                      <CardTitle>Edit Team Member</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <form onSubmit={handleUpdatePhysiotherapist} className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="edit-physio-name">Name</Label>
+                            <Input
+                              id="edit-physio-name"
+                              value={editingPhysiotherapist.name}
+                              onChange={(e) => setEditingPhysiotherapist({ ...editingPhysiotherapist, name: e.target.value })}
+                              required
+                              className="mt-1"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="edit-physio-role">Role</Label>
+                            <Input
+                              id="edit-physio-role"
+                              value={editingPhysiotherapist.role}
+                              onChange={(e) => setEditingPhysiotherapist({ ...editingPhysiotherapist, role: e.target.value })}
+                              required
+                              className="mt-1"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <Label htmlFor="edit-physio-description">Description</Label>
+                          <Textarea
+                            id="edit-physio-description"
+                            value={editingPhysiotherapist.description}
+                            onChange={(e) => setEditingPhysiotherapist({ ...editingPhysiotherapist, description: e.target.value })}
+                            required
+                            className="mt-1"
+                          />
+                        </div>
+                        <div className="grid grid-cols-3 gap-4">
+                          <div>
+                            <Label htmlFor="edit-physio-experience">Experience</Label>
+                            <Input
+                              id="edit-physio-experience"
+                              value={editingPhysiotherapist.experience}
+                              onChange={(e) => setEditingPhysiotherapist({ ...editingPhysiotherapist, experience: e.target.value })}
+                              required
+                              className="mt-1"
+                            />
+                          </div>
+                          <div className="col-span-2">
+                            <Label htmlFor="edit-physio-specializations">Specializations</Label>
+                            <Input
+                              id="edit-physio-specializations"
+                              value={editingPhysiotherapist.specializations}
+                              onChange={(e) => setEditingPhysiotherapist({ ...editingPhysiotherapist, specializations: e.target.value })}
+                              required
+                              className="mt-1"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <Label htmlFor="edit-physio-image">Image URL</Label>
+                          <Input
+                            id="edit-physio-image"
+                            value={editingPhysiotherapist.image || ""}
+                            onChange={(e) => setEditingPhysiotherapist({ ...editingPhysiotherapist, image: e.target.value })}
+                            className="mt-1"
+                          />
+                        </div>
+                        <div className="flex space-x-2">
+                          <Button
+                            type="submit"
+                            disabled={updatePhysiotherapistMutation.isPending}
+                            className="bg-medical-blue hover:bg-medical-dark text-white"
+                          >
+                            {updatePhysiotherapistMutation.isPending ? "Updating..." : "Update Member"}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => setEditingPhysiotherapist(null)}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </form>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {physiotherapistsLoading ? (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {[...Array(3)].map((_, i) => (
+                      <Card key={i}>
+                        <CardContent className="p-6">
+                          <Skeleton className="w-24 h-24 rounded-full mx-auto mb-4" />
+                          <Skeleton className="h-6 w-32 mx-auto mb-2" />
+                          <Skeleton className="h-4 w-24 mx-auto mb-4" />
+                          <Skeleton className="h-4 w-full mb-2" />
+                          <Skeleton className="h-4 w-full" />
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {physiotherapists?.map((physio) => (
+                      <Card key={physio.id} className="text-center hover:shadow-lg transition-shadow">
+                        <CardContent className="p-6">
+                          <img 
+                            src={physio.image || "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200"}
+                            alt={physio.name}
+                            className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-medical-blue/20"
+                          />
+                          <h3 className="text-lg font-semibold text-gray-900 mb-1">{physio.name}</h3>
+                          <p className="text-medical-blue font-medium text-sm mb-2">{physio.role}</p>
+                          <p className="text-gray-600 text-xs mb-3">{physio.experience}</p>
+                          <p className="text-gray-600 text-xs mb-4 line-clamp-3">{physio.description}</p>
+                          <div className="flex space-x-2 justify-center">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setEditingPhysiotherapist(physio)}
+                              className="text-medical-blue border-medical-blue hover:bg-medical-blue hover:text-white"
+                            >
+                              <Edit className="h-3 w-3 mr-1" />
+                              Edit
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              onClick={() => handleDeletePhysiotherapist(physio.id)}
+                              disabled={deletePhysiotherapistMutation.isPending}
+                            >
+                              <X className="h-3 w-3 mr-1" />
+                              Remove
+                            </Button>
                           </div>
                         </CardContent>
                       </Card>
@@ -406,62 +715,53 @@ export default function Admin() {
           <TabsContent value="contacts">
             <Card>
               <CardHeader>
-                <CardTitle>Contact Messages</CardTitle>
+                <CardTitle>Contact Form Submissions</CardTitle>
               </CardHeader>
               <CardContent>
                 {contactsLoading ? (
                   <div className="space-y-4">
-                    {[...Array(3)].map((_, i) => (
-                      <Card key={i}>
-                        <CardContent className="p-4">
-                          <div className="flex justify-between items-start mb-2">
-                            <Skeleton className="h-5 w-32" />
-                            <Skeleton className="h-4 w-24" />
-                          </div>
-                          <Skeleton className="h-4 w-full mb-2" />
-                          <Skeleton className="h-4 w-3/4" />
-                        </CardContent>
-                      </Card>
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="border rounded-lg p-4">
+                        <Skeleton className="h-5 w-32 mb-2" />
+                        <Skeleton className="h-4 w-48 mb-2" />
+                        <Skeleton className="h-4 w-full" />
+                      </div>
                     ))}
                   </div>
                 ) : contacts && contacts.length > 0 ? (
                   <div className="space-y-4">
                     {contacts.map((contact) => (
-                      <Card key={contact.id}>
-                        <CardContent className="p-4">
-                          <div className="flex justify-between items-start mb-2">
-                            <h4 className="font-semibold text-gray-900">{contact.subject}</h4>
-                            <span className="text-sm text-gray-500">
-                              {new Date(contact.createdAt).toLocaleDateString()}
-                            </span>
-                          </div>
-                          <div className="text-sm text-gray-600 mb-2">
-                            <p className="flex items-center mb-1">
-                              <User className="h-4 w-4 mr-2" />
-                              {contact.name}
-                            </p>
-                            <p className="flex items-center mb-1">
-                              <Mail className="h-4 w-4 mr-2" />
-                              {contact.email}
-                            </p>
-                            {contact.phone && (
-                              <p className="flex items-center">
-                                <Phone className="h-4 w-4 mr-2" />
-                                {contact.phone}
-                              </p>
-                            )}
-                          </div>
-                          <p className="text-gray-700 bg-gray-50 p-3 rounded">
-                            {contact.message}
+                      <div key={contact.id} className="border rounded-lg p-4">
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="font-semibold text-gray-900">{contact.subject}</h4>
+                          <span className="text-gray-500 text-sm">
+                            {new Date(contact.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="text-sm text-gray-600 space-y-1">
+                          <p className="flex items-center">
+                            <User className="h-4 w-4 mr-2" />
+                            {contact.name}
                           </p>
-                        </CardContent>
-                      </Card>
+                          <p className="flex items-center">
+                            <Mail className="h-4 w-4 mr-2" />
+                            {contact.email}
+                          </p>
+                          {contact.phone && (
+                            <p className="flex items-center">
+                              <Phone className="h-4 w-4 mr-2" />
+                              {contact.phone}
+                            </p>
+                          )}
+                        </div>
+                        <p className="text-gray-700 mt-3">{contact.message}</p>
+                      </div>
                     ))}
                   </div>
                 ) : (
                   <div className="text-center text-gray-500 py-8">
                     <Mail className="h-12 w-12 mx-auto mb-4" />
-                    <p className="text-lg">No contact messages</p>
+                    <p className="text-lg">No contact submissions found</p>
                   </div>
                 )}
               </CardContent>

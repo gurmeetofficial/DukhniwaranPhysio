@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/auth/auth-provider";
 import { useLocation } from "wouter";
+import { SEOHead } from "@/components/seo/seo-head";
 import { User, Mail, Phone, Lock } from "lucide-react";
 
 export default function Login() {
@@ -88,6 +89,11 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <SEOHead
+        title="Login | Dukhniwaran Physiotherapy Panipat - Patient Portal"
+        description="Login to your Dukhniwaran Physiotherapy account in Panipat. Access your booking history, manage appointments, and book new physiotherapy sessions."
+        keywords="physiotherapy login Panipat, patient portal Dukhniwaran, physiotherapy account login, book appointment login"
+      />
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">

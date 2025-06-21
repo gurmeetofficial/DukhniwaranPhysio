@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SEOHead, getArticleSchema } from "@/components/seo/seo-head";
 import type { Therapy } from "@shared/schema";
 
 export default function Therapies() {
@@ -64,6 +65,12 @@ export default function Therapies() {
 
   return (
     <div className="py-16 bg-gray-50">
+      <SEOHead
+        title="Physiotherapy Services in Panipat | Cupping, Dry Needling, IASTM | Dukhniwaran"
+        description="Comprehensive physiotherapy services in Panipat including cupping therapy, dry needling, IASTM, sciatica treatment, frozen shoulder therapy, and postural correction. Expert care with proven results."
+        keywords="cupping therapy Panipat, dry needling Panipat, IASTM therapy, sciatica treatment Panipat, frozen shoulder treatment, tennis elbow therapy, hijama therapy Panipat, postural correction therapy, physiotherapy services Panipat"
+        schema={getArticleSchema("Physiotherapy Services in Panipat", "Complete range of physiotherapy treatments available in Panipat")}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">

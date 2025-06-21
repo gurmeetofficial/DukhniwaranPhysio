@@ -12,7 +12,7 @@ export function Footer() {
               <span className="text-xl font-bold">Dukhniwaran Physiotherapy</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Professional physiotherapy services combining traditional techniques with modern treatment methods for comprehensive healthcare solutions.
+              Professional physiotherapy services in Panipat combining traditional techniques with modern treatment methods for comprehensive healthcare solutions.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-medical-blue transition-colors">
@@ -69,7 +69,7 @@ export function Footer() {
               <p className="flex items-start">
                 <MapPin className="h-4 w-4 mr-2 mt-1" />
                 123 Health Street<br />
-                Medical District, City
+                Medical District, Panipat, Haryana
               </p>
             </div>
           </div>

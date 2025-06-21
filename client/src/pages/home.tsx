@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
+import { SEOHead, getBusinessSchema } from "@/components/seo/seo-head";
 import { 
   UserCheck, 
   Award, 
@@ -35,16 +36,23 @@ export default function Home() {
 
   return (
     <div>
+      <SEOHead
+        title="Best Physiotherapy Clinic in Panipat | Dukhniwaran Physiotherapy Center"
+        description="Expert physiotherapy services in Panipat. Specializing in cupping therapy, dry needling, IASTM, sciatica treatment, frozen shoulder, and postural correction. Book appointment today!"
+        keywords="physiotherapy Panipat, physiotherapist near me, cupping therapy Panipat, dry needling Panipat, IASTM therapy, sciatica treatment, frozen shoulder treatment, tennis elbow therapy, postural correction, hijama therapy Panipat, best physiotherapy clinic Panipat"
+        schema={getBusinessSchema()}
+      />
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-medical-blue to-medical-dark text-white py-20 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-medical-blue via-medical-dark to-blue-900 text-white py-20 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                Professional <span className="text-medical-green">Physiotherapy</span> Care
+            <div className="animate-fade-in">
+              <h1 className="font-heading text-4xl lg:text-6xl font-bold mb-6 leading-tight text-balance">
+                Professional <span className="gradient-text">Physiotherapy</span> Care in Panipat
               </h1>
-              <p className="text-xl mb-8 text-blue-100 leading-relaxed">
-                Expert treatment for pain relief, rehabilitation, and wellness. Our experienced team provides personalized care to help you recover and thrive.
+              <p className="text-xl mb-8 text-blue-100 leading-relaxed font-light">
+                Expert treatment for pain relief, rehabilitation, and wellness. Our experienced team provides personalized physiotherapy care to help you recover and thrive with advanced techniques.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/booking">
@@ -59,20 +67,20 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative animate-slide-up">
               <img 
                 src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-                alt="Modern physiotherapy clinic interior" 
-                className="rounded-2xl shadow-2xl w-full h-auto"
+                alt="Modern physiotherapy clinic interior in Panipat with professional equipment" 
+                className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg backdrop-blur-custom">
                 <div className="flex items-center">
                   <div className="bg-medical-green rounded-full p-3 mr-4">
                     <Award className="text-white h-6 w-6" />
                   </div>
                   <div>
-                    <p className="text-gray-900 font-semibold">Certified Professionals</p>
-                    <p className="text-gray-600 text-sm">Licensed & Experienced</p>
+                    <p className="text-gray-900 font-semibold font-heading">Certified Professionals</p>
+                    <p className="text-gray-600 text-sm">Licensed & Experienced in Panipat</p>
                   </div>
                 </div>
               </div>
@@ -84,47 +92,47 @@ export default function Home() {
       {/* Clinic Introduction */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Dukhniwaran Physiotherapy?
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
+              Why Choose Dukhniwaran Physiotherapy in Panipat?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We combine traditional physiotherapy techniques with modern treatment methods to provide comprehensive care for all your rehabilitation needs.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+              We combine traditional physiotherapy techniques with modern treatment methods to provide comprehensive care for all your rehabilitation needs in Panipat and surrounding areas.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in">
               <CardContent className="pt-6">
-                <div className="bg-medical-blue rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-br from-medical-blue to-medical-dark rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <UserCheck className="text-white h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Expert Team</h3>
-                <p className="text-gray-600">
-                  Certified physiotherapists with years of experience in treating various conditions and injuries.
+                <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">Expert Team in Panipat</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Certified physiotherapists with years of experience in treating various conditions and injuries in Panipat region.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in" style={{animationDelay: '0.2s'}}>
               <CardContent className="pt-6">
-                <div className="bg-medical-green rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-br from-medical-green to-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <Wrench className="text-white h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Modern Equipment</h3>
-                <p className="text-gray-600">
-                  State-of-the-art physiotherapy equipment and facilities for effective treatment and recovery.
+                <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">Modern Equipment</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  State-of-the-art physiotherapy equipment and facilities for effective treatment and recovery in Panipat.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in" style={{animationDelay: '0.4s'}}>
               <CardContent className="pt-6">
-                <div className="bg-medical-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-br from-medical-orange to-orange-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <Heart className="text-white h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Personalized Care</h3>
-                <p className="text-gray-600">
+                <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">Personalized Care</h3>
+                <p className="text-gray-600 leading-relaxed">
                   Tailored treatment plans designed specifically for your unique needs and recovery goals.
                 </p>
               </CardContent>
@@ -136,16 +144,16 @@ export default function Home() {
       {/* Testimonials Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              What Our Patients Say
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
+              What Our Patients Say About Dukhniwaran Physiotherapy
             </h2>
-            <p className="text-xl text-gray-600">Real experiences from our satisfied patients</p>
+            <p className="text-xl text-gray-600 font-light">Real experiences from our satisfied patients in Panipat</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
+              <Card key={index} className="p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{animationDelay: `${index * 0.2}s`}}>
                 <CardContent className="pt-6">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">
@@ -153,15 +161,15 @@ export default function Home() {
                         <Star key={i} className="h-4 w-4 fill-current" />
                       ))}
                     </div>
-                    <span className="ml-2 text-gray-600 text-sm">5.0</span>
+                    <span className="ml-2 text-gray-600 text-sm font-medium">5.0</span>
                   </div>
-                  <p className="text-gray-700 mb-4">"{testimonial.comment}"</p>
+                  <p className="text-gray-700 mb-4 leading-relaxed italic">"{testimonial.comment}"</p>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
-                      <UserCheck className="text-gray-600 h-6 w-6" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-medical-blue to-medical-dark rounded-full flex items-center justify-center mr-3">
+                      <UserCheck className="text-white h-6 w-6" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                      <p className="font-heading font-semibold text-gray-900">{testimonial.name}</p>
                       <p className="text-gray-600 text-sm">{testimonial.role}</p>
                     </div>
                   </div>

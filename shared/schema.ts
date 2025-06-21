@@ -48,6 +48,18 @@ export const contacts = pgTable("contacts", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const physiotherapists = pgTable("physiotherapists", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  description: text("description").notNull(),
+  image: text("image"),
+  experience: text("experience").notNull(),
+  specializations: text("specializations").notNull(),
+  isActive: boolean("is_active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -68,6 +80,11 @@ export const insertContactSchema = createInsertSchema(contacts).omit({
   createdAt: true,
 });
 
+export const insertPhysiotherapistSchema = createInsertSchema(physiotherapists).omit({
+  id: true,
+  createdAt: true,
+});
+
 // Login schema
 export const loginSchema = z.object({
   email: z.string().email(),
@@ -83,4 +100,6 @@ export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
 export type Contact = typeof contacts.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
+export type Physiotherapist = typeof physiotherapists.$inferSelect;
+export type InsertPhysiotherapist = z.infer<typeof insertPhysiotherapistSchema>;
 export type LoginData = z.infer<typeof loginSchema>;

@@ -1,4 +1,4 @@
-import { users, therapies, bookings, contacts, type User, type InsertUser, type Therapy, type InsertTherapy, type Booking, type InsertBooking, type Contact, type InsertContact } from "@shared/schema";
+import { users, therapies, bookings, contacts, physiotherapists, type User, type InsertUser, type Therapy, type InsertTherapy, type Booking, type InsertBooking, type Contact, type InsertContact, type Physiotherapist, type InsertPhysiotherapist } from "@shared/schema";
 import bcrypt from "bcrypt";
 
 export interface IStorage {
@@ -24,6 +24,13 @@ export interface IStorage {
   // Contacts
   getContacts(): Promise<Contact[]>;
   createContact(contact: InsertContact): Promise<Contact>;
+  
+  // Physiotherapists
+  getPhysiotherapists(): Promise<Physiotherapist[]>;
+  getPhysiotherapist(id: number): Promise<Physiotherapist | undefined>;
+  createPhysiotherapist(physiotherapist: InsertPhysiotherapist): Promise<Physiotherapist>;
+  updatePhysiotherapist(id: number, physiotherapist: Partial<InsertPhysiotherapist>): Promise<Physiotherapist | undefined>;
+  deletePhysiotherapist(id: number): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -31,23 +38,28 @@ export class MemStorage implements IStorage {
   private therapies: Map<number, Therapy>;
   private bookings: Map<number, Booking>;
   private contacts: Map<number, Contact>;
+  private physiotherapists: Map<number, Physiotherapist>;
   private currentUserId: number;
   private currentTherapyId: number;
   private currentBookingId: number;
   private currentContactId: number;
+  private currentPhysiotherapistId: number;
 
   constructor() {
     this.users = new Map();
     this.therapies = new Map();
     this.bookings = new Map();
     this.contacts = new Map();
+    this.physiotherapists = new Map();
     this.currentUserId = 1;
     this.currentTherapyId = 1;
     this.currentBookingId = 1;
     this.currentContactId = 1;
+    this.currentPhysiotherapistId = 1;
     
-    // Initialize with default therapies
+    // Initialize with default data
     this.initializeTherapies();
+    this.initializePhysiotherapists();
     this.initializeAdminUser();
   }
 
@@ -103,6 +115,7 @@ export class MemStorage implements IStorage {
       ...insertUser,
       id,
       password: hashedPassword,
+      isAdmin: insertUser.isAdmin || false,
       createdAt: new Date(),
     };
     this.users.set(id, user);
@@ -120,7 +133,11 @@ export class MemStorage implements IStorage {
 
   async createTherapy(insertTherapy: InsertTherapy): Promise<Therapy> {
     const id = this.currentTherapyId++;
-    const therapy: Therapy = { ...insertTherapy, id };
+    const therapy: Therapy = { 
+      ...insertTherapy, 
+      id,
+      isActive: insertTherapy.isActive !== undefined ? insertTherapy.isActive : true
+    };
     this.therapies.set(id, therapy);
     return therapy;
   }
@@ -152,6 +169,11 @@ export class MemStorage implements IStorage {
     const booking: Booking = {
       ...insertBooking,
       id,
+      userId: insertBooking.userId || null,
+      patientEmail: insertBooking.patientEmail || null,
+      patientAge: insertBooking.patientAge || null,
+      additionalNotes: insertBooking.additionalNotes || null,
+      status: insertBooking.status || "pending",
       createdAt: new Date(),
     };
     this.bookings.set(id, booking);
@@ -181,10 +203,87 @@ export class MemStorage implements IStorage {
     const contact: Contact = {
       ...insertContact,
       id,
+      phone: insertContact.phone || null,
       createdAt: new Date(),
     };
     this.contacts.set(id, contact);
     return contact;
+  }
+
+  private initializePhysiotherapists() {
+    const defaultPhysiotherapists = [
+      {
+        name: "Dr. Sarah Miller",
+        role: "Lead Physiotherapist",
+        description: "Specialized in orthopedic rehabilitation and sports injury treatment with advanced certifications in manual therapy.",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        experience: "15+ years",
+        specializations: "Orthopedic Rehabilitation, Sports Injuries, Manual Therapy",
+        isActive: true
+      },
+      {
+        name: "Dr. James Wilson",
+        role: "Senior Therapist",
+        description: "Expert in dry needling, IASTM therapy, and chronic pain management with focus on evidence-based treatment approaches.",
+        image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        experience: "12+ years",
+        specializations: "Dry Needling, IASTM, Chronic Pain Management",
+        isActive: true
+      },
+      {
+        name: "Dr. Lisa Zhang",
+        role: "Rehabilitation Specialist",
+        description: "Specialist in neurological rehabilitation, postural correction, and movement analysis with advanced training in functional movement.",
+        image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        experience: "10+ years",
+        specializations: "Neurological Rehabilitation, Postural Correction, Movement Analysis",
+        isActive: true
+      }
+    ];
+
+    defaultPhysiotherapists.forEach(physio => {
+      const physioWithId: Physiotherapist = {
+        id: this.currentPhysiotherapistId++,
+        ...physio,
+        createdAt: new Date(),
+      };
+      this.physiotherapists.set(physioWithId.id, physioWithId);
+    });
+  }
+
+  // Physiotherapists
+  async getPhysiotherapists(): Promise<Physiotherapist[]> {
+    return Array.from(this.physiotherapists.values()).filter(physio => physio.isActive);
+  }
+
+  async getPhysiotherapist(id: number): Promise<Physiotherapist | undefined> {
+    return this.physiotherapists.get(id);
+  }
+
+  async createPhysiotherapist(insertPhysiotherapist: InsertPhysiotherapist): Promise<Physiotherapist> {
+    const id = this.currentPhysiotherapistId++;
+    const physiotherapist: Physiotherapist = {
+      ...insertPhysiotherapist,
+      id,
+      image: insertPhysiotherapist.image || null,
+      isActive: insertPhysiotherapist.isActive !== undefined ? insertPhysiotherapist.isActive : true,
+      createdAt: new Date(),
+    };
+    this.physiotherapists.set(id, physiotherapist);
+    return physiotherapist;
+  }
+
+  async updatePhysiotherapist(id: number, updates: Partial<InsertPhysiotherapist>): Promise<Physiotherapist | undefined> {
+    const physiotherapist = this.physiotherapists.get(id);
+    if (!physiotherapist) return undefined;
+    
+    const updatedPhysiotherapist = { ...physiotherapist, ...updates };
+    this.physiotherapists.set(id, updatedPhysiotherapist);
+    return updatedPhysiotherapist;
+  }
+
+  async deletePhysiotherapist(id: number): Promise<boolean> {
+    return this.physiotherapists.delete(id);
   }
 }
 

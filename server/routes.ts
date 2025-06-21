@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertUserSchema, insertBookingSchema, insertContactSchema, insertTherapySchema, loginSchema } from "@shared/schema";
+import { insertUserSchema, insertBookingSchema, insertContactSchema, insertTherapySchema, insertPhysiotherapistSchema, loginSchema } from "@shared/schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -258,6 +258,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const contacts = await storage.getContacts();
       res.json(contacts);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Physiotherapists routes
+  app.get("/api/physiotherapists", async (req, res) => {
+    try {
+      const physiotherapists = await storage.getPhysiotherapists();
+      res.json(physiotherapists);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.get("/api/physiotherapists/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const physiotherapist = await storage.getPhysiotherapist(id);
+      if (!physiotherapist) {
+        return res.status(404).json({ message: "Physiotherapist not found" });
+      }
+      res.json(physiotherapist);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/physiotherapists", authenticateToken, requireAdmin, async (req: any, res) => {
+    try {
+      const physiotherapistData = insertPhysiotherapistSchema.parse(req.body);
+      const physiotherapist = await storage.createPhysiotherapist(physiotherapistData);
+      res.json(physiotherapist);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.put("/api/physiotherapists/:id", authenticateToken, requireAdmin, async (req: any, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const physiotherapistData = insertPhysiotherapistSchema.partial().parse(req.body);
+      const physiotherapist = await storage.updatePhysiotherapist(id, physiotherapistData);
+      if (!physiotherapist) {
+        return res.status(404).json({ message: "Physiotherapist not found" });
+      }
+      res.json(physiotherapist);
+    } catch (error: any) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+  app.delete("/api/physiotherapists/:id", authenticateToken, requireAdmin, async (req: any, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deletePhysiotherapist(id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Physiotherapist not found" });
+      }
+      res.json({ message: "Physiotherapist deleted successfully" });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }

@@ -76,7 +76,7 @@ export default function Therapies() {
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Our Specialized Therapies
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto font-medium">
             Comprehensive treatment options tailored to your specific needs and conditions
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function Therapies() {
               />
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{therapy.name}</h3>
-                <p className="text-gray-600 mb-4">{therapy.description}</p>
+                <p className="text-gray-800 mb-4 font-medium">{therapy.description}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-medical-blue font-semibold">
                     ₹{therapy.priceMin} - ₹{therapy.priceMax}

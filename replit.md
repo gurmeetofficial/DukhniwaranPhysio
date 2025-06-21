@@ -132,6 +132,9 @@ This is a full-stack web application for Dukhniwaran Physiotherapy Clinic, built
 - ✓ Updated all pages with location-specific content for Panipat
 - ✓ Added API routes for physiotherapist CRUD operations
 - ✓ Enhanced admin panel with team management capabilities
+- ✓ Improved text contrast for better readability (gray-600 → gray-800)
+- ✓ Added prominent contact information in navigation and hero sections
+- ✓ Integrated Google Maps testimonials with review links
 
 ### SEO Features Added
 - Meta tags optimization for all pages

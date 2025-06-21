@@ -29,10 +29,10 @@ export default function About() {
             <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-6 text-balance">
               About Dukhniwaran Physiotherapy - Panipat's Premier Clinic
             </h1>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed font-light">
+            <p className="text-lg text-gray-800 mb-6 leading-relaxed font-medium">
               With over a decade of experience in physiotherapy and rehabilitation, Dukhniwaran Physiotherapy has been serving Panipat and surrounding communities with dedication and expertise. Our clinic specializes in traditional and modern treatment methods to provide comprehensive healthcare solutions.
             </p>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
+            <p className="text-lg text-gray-800 mb-8 leading-relaxed font-medium">
               Our mission is to help patients in Panipat achieve optimal health and wellness through personalized treatment plans, compassionate care, and evidence-based practices. We believe in treating the whole person, not just the symptoms.
             </p>
             
@@ -42,7 +42,7 @@ export default function About() {
                   <div className="bg-medical-blue rounded-full p-2 mr-3">
                     <Check className="text-white h-4 w-4" />
                   </div>
-                  <span className="text-gray-700 font-medium">{highlight}</span>
+                  <span className="text-gray-800 font-medium">{highlight}</span>
                 </div>
               ))}
             </div>

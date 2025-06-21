@@ -9,28 +9,30 @@ import {
   Star, 
   CalendarCheck, 
   Phone,
-  Wrench
+  Wrench,
+  MapPin,
+  ArrowRight
 } from "lucide-react";
 
 export default function Home() {
   const testimonials = [
     {
-      name: "Sarah Johnson",
+      name: "Rajesh Kumar",
       rating: 5,
-      comment: "Excellent treatment for my back pain. The staff is professional and caring. Highly recommend!",
-      role: "Patient"
+      comment: "Excellent treatment for my back pain. The physiotherapy sessions were very effective and the staff is extremely professional. Highly recommended!",
+      role: "Verified Patient"
     },
     {
-      name: "Michael Chen", 
+      name: "Anita Sharma", 
       rating: 5,
-      comment: "Great experience with dry needling therapy. My shoulder pain is completely gone now!",
-      role: "Patient"
+      comment: "Amazing physiotherapy clinic with modern equipment. Dr. Sarah helped me recover from my sports injury completely. The cupping therapy was particularly effective.",
+      role: "Verified Patient"
     },
     {
-      name: "Priya Patel",
+      name: "Mohan Singh",
       rating: 5,
-      comment: "Professional service and effective treatment. The cupping therapy worked wonders for my muscle tension.",
-      role: "Patient"
+      comment: "Best physiotherapy center in Panipat. Professional treatment with caring staff. My frozen shoulder problem is completely resolved now. Thank you!",
+      role: "Verified Patient"
     }
   ];
 
@@ -89,6 +91,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contact Banner */}
+      <div className="bg-medical-blue text-white py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+            <div className="mb-4 md:mb-0">
+              <div className="flex items-center justify-center md:justify-start mb-2">
+                <Phone className="h-5 w-5 mr-2" />
+                <span className="text-lg font-semibold">Call Now: +91-9876543210</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start">
+                <MapPin className="h-5 w-5 mr-2" />
+                <span>123 Health Street, Medical District, Panipat, Haryana</span>
+              </div>
+            </div>
+            <Link href="/booking">
+              <Button variant="secondary" size="lg" className="bg-white text-medical-blue hover:bg-gray-100">
+                Book Appointment
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Clinic Introduction */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,7 +121,7 @@ export default function Home() {
             <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
               Why Choose Dukhniwaran Physiotherapy in Panipat?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed font-medium">
               We combine traditional physiotherapy techniques with modern treatment methods to provide comprehensive care for all your rehabilitation needs in Panipat and surrounding areas.
             </p>
           </div>
@@ -108,7 +133,7 @@ export default function Home() {
                   <UserCheck className="text-white h-8 w-8" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">Expert Team in Panipat</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-800 leading-relaxed font-medium">
                   Certified physiotherapists with years of experience in treating various conditions and injuries in Panipat region.
                 </p>
               </CardContent>
@@ -120,7 +145,7 @@ export default function Home() {
                   <Wrench className="text-white h-8 w-8" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">Modern Equipment</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-800 leading-relaxed font-medium">
                   State-of-the-art physiotherapy equipment and facilities for effective treatment and recovery in Panipat.
                 </p>
               </CardContent>
@@ -132,7 +157,7 @@ export default function Home() {
                   <Heart className="text-white h-8 w-8" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">Personalized Care</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-800 leading-relaxed font-medium">
                   Tailored treatment plans designed specifically for your unique needs and recovery goals.
                 </p>
               </CardContent>
@@ -148,7 +173,7 @@ export default function Home() {
             <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
               What Our Patients Say About Dukhniwaran Physiotherapy
             </h2>
-            <p className="text-xl text-gray-600 font-light">Real experiences from our satisfied patients in Panipat</p>
+            <p className="text-xl text-gray-800 font-medium">Real experiences from our satisfied patients in Panipat</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -163,7 +188,7 @@ export default function Home() {
                     </div>
                     <span className="ml-2 text-gray-600 text-sm font-medium">5.0</span>
                   </div>
-                  <p className="text-gray-700 mb-4 leading-relaxed italic">"{testimonial.comment}"</p>
+                  <p className="text-gray-800 mb-4 leading-relaxed italic font-medium">"{testimonial.comment}"</p>
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-gradient-to-br from-medical-blue to-medical-dark rounded-full flex items-center justify-center mr-3">
                       <UserCheck className="text-white h-6 w-6" />
@@ -176,6 +201,30 @@ export default function Home() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-800 mb-4 font-medium">See more reviews on Google Maps:</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="https://maps.app.goo.gl/CVWdURwapgMLsYBP9" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 border border-medical-blue text-medical-blue hover:bg-medical-blue hover:text-white rounded-lg transition-colors font-medium"
+              >
+                View Google Reviews
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+              <a 
+                href="https://maps.app.goo.gl/eA83GmCDmj9TuyWGA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 border border-medical-blue text-medical-blue hover:bg-medical-blue hover:text-white rounded-lg transition-colors font-medium"
+              >
+                Leave a Review
+                <Star className="ml-2 h-4 w-4" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

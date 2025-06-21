@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Heart, Menu, User } from "lucide-react";
+import { Heart, Menu, User, Phone, MapPin } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-provider";
 
 export function Navbar() {
@@ -30,6 +30,22 @@ export function Navbar() {
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
+      {/* Contact Info Bar */}
+      <div className="bg-medical-blue text-white py-2 text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+            <div className="flex items-center mb-1 sm:mb-0">
+              <Phone className="h-4 w-4 mr-2" />
+              <span className="font-medium">+91-9876543210</span>
+            </div>
+            <div className="flex items-center">
+              <MapPin className="h-4 w-4 mr-2" />
+              <span>123 Health Street, Medical District, Panipat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">

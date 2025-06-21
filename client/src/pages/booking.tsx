@@ -186,7 +186,7 @@ export default function Booking() {
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Book Your Appointment
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-800 font-medium">
             Schedule your therapy session with our expert team
           </p>
         </div>

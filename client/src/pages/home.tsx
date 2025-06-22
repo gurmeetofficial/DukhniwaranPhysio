@@ -98,11 +98,11 @@ export default function Home() {
             <div className="mb-4 md:mb-0">
               <div className="flex items-center justify-center md:justify-start mb-2">
                 <Phone className="h-5 w-5 mr-2" />
-                <span className="text-lg font-semibold">Call Now: +91-9876543210</span>
+                <span className="text-lg font-semibold">Call Now: +91-7015017485</span>
               </div>
               <div className="flex items-center justify-center md:justify-start">
                 <MapPin className="h-5 w-5 mr-2" />
-                <span>123 Health Street, Medical District, Panipat, Haryana</span>
+                <span>736, opposite ekta park, near lucky bakery, Model Town, Panipat, Haryana 132103, Haryana</span>
               </div>
             </div>
             <Link href="/booking">

@@ -36,11 +36,11 @@ export function Navbar() {
           <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
             <div className="flex items-center mb-1 sm:mb-0">
               <Phone className="h-4 w-4 mr-2" />
-              <span className="font-medium">+91-9876543210</span>
+              <span className="font-medium">+91-7015017485</span>
             </div>
             <div className="flex items-center">
               <MapPin className="h-4 w-4 mr-2" />
-              <span>123 Health Street, Medical District, Panipat</span>
+              <span>736, opposite ekta park, near lucky bakery, Model Town, Panipat, Haryana 132103</span>
             </div>
           </div>
         </div>

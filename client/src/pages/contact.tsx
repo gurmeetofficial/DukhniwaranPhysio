@@ -70,7 +70,8 @@ export default function Contact() {
     <div className="py-16 bg-gray-50">
       <SEOHead
         title="Contact Dukhniwaran Physiotherapy Clinic Panipat | Book Appointment"
-        description="Contact Dukhniwaran Physiotherapy in Panipat. Call +91-9876543210 for appointments. Located at 123 Health Street, Medical District. Working hours: Mon-Fri 9AM-6PM, Sat 9AM-2PM."
+        description="Contact Dukhniwaran Physiotherapy in Panipat. Call +91-7015017485 for appointments. Located at 736, opposite ekta park
+near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9AM-2PM : 4PM-7PM, Sum 9AM-2PM."
         keywords="contact physiotherapy Panipat, Dukhniwaran Physiotherapy address, physiotherapy clinic Panipat phone number, book appointment physiotherapy Panipat, physiotherapy clinic working hours"
         schema={getArticleSchema("Contact Dukhniwaran Physiotherapy", "Get in touch with our physiotherapy clinic in Panipat")}
       />
@@ -97,8 +98,8 @@ export default function Contact() {
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
                       <p className="text-gray-600">
-                        123 Health Street, Medical District<br />
-                        City, State 12345
+                        736, opposite ekta park<br />
+                        near lucky bakery, Model Town, Panipat, Haryana 132103
                       </p>
                     </div>
                   </div>
@@ -109,7 +110,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                      <p className="text-gray-600">+91 9876543210</p>
+                      <p className="text-gray-600">+91 7015017485</p>
                       <p className="text-gray-600">+91 9876543211</p>
                     </div>
                   </div>
@@ -120,7 +121,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                      <p className="text-gray-600">info@dukhniwaran.com</p>
+                      <p className="text-gray-600">dukhniwaranphysio@gmail.com</p>
                       <p className="text-gray-600">appointments@dukhniwaran.com</p>
                     </div>
                   </div>

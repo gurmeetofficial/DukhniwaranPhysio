@@ -18,9 +18,14 @@ export function Footer() {
               <a href="#" className="text-gray-300 hover:text-medical-blue transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-medical-blue transition-colors">
+                <a
+                href="https://www.instagram.com/dukhniwaranphysio?igsh=MTJndDl0MnJjaTk3ZA=="
+                className="text-gray-300 hover:text-medical-blue transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
                 <Instagram className="h-6 w-6" />
-              </a>
+                </a>
             </div>
           </div>
 
@@ -60,16 +65,16 @@ export function Footer() {
             <div className="space-y-2 text-gray-300">
               <p className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                +91 9876543210
+                +91 7015017485
               </p>
               <p className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                info@dukhniwaran.com
+                dukhniwaranphysio@gmail.com
               </p>
               <p className="flex items-start">
                 <MapPin className="h-4 w-4 mr-2 mt-1" />
-                123 Health Street<br />
-                Medical District, Panipat, Haryana
+                736, opposite ekta park<br />
+                near lucky bakery, Model Town, Panipat, Haryana 132103
               </p>
             </div>
           </div>

@@ -105,10 +105,10 @@ export const getBusinessSchema = () => ({
   "name": "Dukhniwaran Physiotherapy",
   "description": "Professional physiotherapy clinic specializing in traditional and modern treatment methods",
   "url": window.location.origin,
-  "telephone": "+91-9876543210",
+  "telephone": "+91-7015017485",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Health Street",
+    "streetAddress": "736, opposite ekta park",
     "addressLocality": "Panipat",
     "addressRegion": "Haryana",
     "postalCode": "132103",

@@ -30,8 +30,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    if (currentUser) {
-      setUser(currentUser);
+    if (currentUser && Object.keys(currentUser).length > 0) {
+      setUser(currentUser as User);
       setIsAuthenticated(true);
     } else if (!auth.isAuthenticated()) {
       setUser(null);
@@ -42,6 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     const response = await auth.login(email, password);
     auth.setToken(response.token);
+    console.log("Login response:", response.user);
     setUser(response.user);
     setIsAuthenticated(true);
   };

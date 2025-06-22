@@ -113,6 +113,79 @@ export default function Admin() {
     },
   });
 
+  // Add Physiotherapist Mutation
+  const addPhysiotherapistMutation = useMutation({
+    mutationFn: async (data: InsertPhysiotherapist) => {
+      const response = await apiRequest("POST", "/api/physiotherapists", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Physiotherapist added successfully!",
+      });
+      setIsAddingPhysiotherapist(false);
+      setNewPhysiotherapist({
+        name: "",
+        role: "",
+        description: "",
+        image: "",
+        experience: "",
+        specializations: "",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/physiotherapists"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error adding physiotherapist",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Update Physiotherapist Mutation
+  const updatePhysiotherapistMutation = useMutation({
+    mutationFn: async (data: Physiotherapist) => {
+      const response = await apiRequest("PUT", `/api/physiotherapists/${data.id}`, data);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Physiotherapist updated successfully!",
+      });
+      setEditingPhysiotherapist(null);
+      queryClient.invalidateQueries({ queryKey: ["/api/physiotherapists"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error updating physiotherapist",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Delete Physiotherapist Mutation
+  const deletePhysiotherapistMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await apiRequest("DELETE", `/api/physiotherapists/${id}`);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Physiotherapist removed successfully!",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/physiotherapists"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error removing physiotherapist",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleBookingStatusUpdate = (id: number, status: string) => {
     updateBookingMutation.mutate({ id, status });
   };
@@ -155,6 +228,7 @@ export default function Admin() {
       experience: editingPhysiotherapist.experience,
       specializations: editingPhysiotherapist.specializations,
       isActive: editingPhysiotherapist.isActive,
+      createdAt: editingPhysiotherapist.createdAt,
     });
   };
 

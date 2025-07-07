@@ -17,21 +17,21 @@ import {
 export default function Home() {
   const testimonials = [
     {
-      name: "Rajesh Kumar",
+      name: "ANKIT SHARMA",
       rating: 5,
-      comment: "Excellent treatment for my back pain. The physiotherapy sessions were very effective and the staff is extremely professional. Highly recommended!",
+      comment: "Thanks a lot for building that confidence and removing the fear post my ACL surgery. Your physio did help me, within a week I was able to do so many things and tasks with right exercises with right techniques. Indeed you go by your name Dukhnivaran, curing the things in a perfect manner!",
       role: "Verified Patient"
     },
     {
-      name: "Anita Sharma", 
+      name: "Amaninder Singh", 
       rating: 5,
-      comment: "Amazing physiotherapy clinic with modern equipment. Dr. Sarah helped me recover from my sports injury completely. The cupping therapy was particularly effective.",
+      comment: "One of the best place to get my physio done. I go to gym everyday and need regular physio. This is the place where i love to visit. I specially come from delhi to this place. God bless Dr. Jasmeet Singh. He is very intelligent and experienced.",
       role: "Verified Patient"
     },
     {
-      name: "Mohan Singh",
+      name: "Inderjeet Singh",
       rating: 5,
-      comment: "Best physiotherapy center in Panipat. Professional treatment with caring staff. My frozen shoulder problem is completely resolved now. Thank you!",
+      comment: "Great experience here coz Dr jasmeet treat patients as his family member so come here whenever you are in any type of pain nd you will definitely get relief!",
       role: "Verified Patient"
     }
   ];
@@ -63,7 +63,7 @@ export default function Home() {
                     Book Appointment
                   </Button>
                 </Link>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-medical-blue">
+                <Button size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-medical-blue">
                   <Phone className="mr-2 h-5 w-5" />
                   Call Us Now
                 </Button>
@@ -71,7 +71,7 @@ export default function Home() {
             </div>
             <div className="relative animate-slide-up">
               <img 
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                src="static/PhysioImages/Cupping.jpg" 
                 alt="Modern physiotherapy clinic interior in Panipat with professional equipment" 
                 className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
               />
@@ -224,6 +224,44 @@ export default function Home() {
                 Leave a Review
                 <Star className="ml-2 h-4 w-4" />
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram & YouTube Feed Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+          {/* Instagram */}
+          <div>
+            <h2 className="text-2xl font-bold text-center mb-6 text-medical-blue">Follow Us On Instagram</h2>
+            <div className="flex justify-center">
+              <iframe
+                src="https://www.instagram.com/p/DLtxeQIpkci/embed"
+                width="400"
+                height="480"
+                frameBorder="0"
+                scrolling="no"
+                allowTransparency={true}
+                title="Instagram Post"
+                style={{ borderRadius: '12px', border: '1px solid #e6e6e6' }}
+              ></iframe>
+            </div>
+          </div>
+          {/* YouTube */}
+          <div>
+            <h2 className="text-2xl font-bold text-center mb-6 text-red-600">Watch Us On YouTube</h2>
+            <div className="flex justify-center">
+              <iframe
+                width="400"
+                height="225"
+                src="https://www.youtube.com/embed/brL1Vnb_fnk"
+                title="YouTube Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{ borderRadius: '12px', border: '1px solid #e6e6e6' }}
+              ></iframe>
             </div>
           </div>
         </div>

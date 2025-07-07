@@ -18,7 +18,7 @@ export function SEOHead({
   canonical,
   ogTitle,
   ogDescription,
-  ogImage = "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630",
+  ogImage = "static/PhysioImages/matPilates.jpg",
   schema
 }: SEOHeadProps) {
   useEffect(() => {
@@ -83,6 +83,23 @@ export function SEOHead({
         document.head.appendChild(script);
       }
       script.textContent = JSON.stringify(schema);
+    }
+
+    // Inject Google Analytics tag if not already present
+    if (!document.querySelector('script[src*="googletagmanager.com/gtag/js?id=G-F9T5RJR031"]')) {
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-F9T5RJR031';
+      document.head.appendChild(gaScript);
+
+      const inlineScript = document.createElement('script');
+      inlineScript.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F9T5RJR031');
+      `;
+      document.head.appendChild(inlineScript);
     }
 
     // Cleanup function to remove meta tags when component unmounts

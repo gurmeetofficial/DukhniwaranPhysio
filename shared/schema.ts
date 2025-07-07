@@ -73,6 +73,9 @@ export const insertTherapySchema = createInsertSchema(therapies).omit({
 export const insertBookingSchema = createInsertSchema(bookings).omit({
   id: true,
   createdAt: true,
+}).extend({
+  appointmentDate: z.string().nullable(),
+  appointmentTime: z.string().nullable(),
 });
 
 export const insertContactSchema = createInsertSchema(contacts).omit({

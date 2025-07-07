@@ -15,17 +15,22 @@ export function Footer() {
               Professional physiotherapy services in Panipat combining traditional techniques with modern treatment methods for comprehensive healthcare solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-medical-blue transition-colors">
-                <Facebook className="h-6 w-6" />
-              </a>
-                <a
+              <a
                 href="https://www.instagram.com/dukhniwaranphysio?igsh=MTJndDl0MnJjaTk3ZA=="
                 className="text-gray-300 hover:text-medical-blue transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
-                >
+              >
+                <Facebook className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.instagram.com/dukhniwaranphysio?igsh=MTJndDl0MnJjaTk3ZA=="
+                className="text-gray-300 hover:text-medical-blue transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram className="h-6 w-6" />
-                </a>
+              </a>
             </div>
           </div>
 

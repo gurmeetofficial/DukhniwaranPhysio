@@ -193,8 +193,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/bookings", async (req, res) => {
     try {
-      const bookingData = insertBookingSchema.parse(req.body);
-      const booking = await storage.createBooking(bookingData);
+      // Only require patientName, patientPhone, and therapyId
+      const { patientName, patientPhone, therapyId } = req.body;
+      if (!patientName || !patientPhone || !therapyId) {
+        return res.status(400).json({ message: "Name, Phone Number, and Select Therapy are required." });
+      }
+      // Set all other fields to null if not provided
+      const bookingData = {
+        userId: req.body.userId || null,
+        therapyId,
+        patientName,
+        patientPhone,
+        patientEmail: req.body.patientEmail || null,
+        patientAge: req.body.patientAge || null,
+        appointmentDate: req.body.appointmentDate || null,
+        appointmentTime: req.body.appointmentTime || null,
+        additionalNotes: req.body.additionalNotes || null,
+        status: req.body.status || "pending",
+      };
+      // Patch: allow null for appointmentDate and appointmentTime in validation
+      const safeBookingData = {
+        ...bookingData,
+        appointmentDate: bookingData.appointmentDate ?? null,
+        appointmentTime: bookingData.appointmentTime ?? null,
+      };
+      // Validate, but allow null for these fields
+      const validated = insertBookingSchema.extend({
+        appointmentDate: insertBookingSchema.shape.appointmentDate.nullable(),
+        appointmentTime: insertBookingSchema.shape.appointmentTime.nullable(),
+      }).parse(safeBookingData);
+      const booking = await storage.createBooking(validated);
       res.json(mongoToApp(booking));
     } catch (error: any) {
       res.status(400).json({ message: error.message });

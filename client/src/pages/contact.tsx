@@ -111,7 +111,6 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
                       <p className="text-gray-600">+91 7015017485</p>
-                      <p className="text-gray-600">+91 9876543211</p>
                     </div>
                   </div>
 
@@ -122,7 +121,6 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
                       <p className="text-gray-600">dukhniwaranphysio@gmail.com</p>
-                      <p className="text-gray-600">appointments@dukhniwaran.com</p>
                     </div>
                   </div>
 
@@ -132,9 +130,8 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Working Hours</h4>
-                      <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                      <p className="text-gray-600">Saturday: 9:00 AM - 2:00 PM</p>
-                      <p className="text-gray-600">Sunday: Closed</p>
+                      <p className="text-gray-600">Monday - Saturday: 9:00 AM - 2:00 PM, 4:30 PM - 7:00 PM</p>
+                      <p className="text-gray-600">Sunday: 9:00 AM - 2:00 PM</p>
                     </div>
                   </div>
                 </div>

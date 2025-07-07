@@ -49,7 +49,7 @@ export default function About() {
           </div>
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+              src="static/PhysioImages/matPilates.jpg" 
               alt="Dukhniwaran Physiotherapy team working with patient in Panipat clinic" 
               className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
             />

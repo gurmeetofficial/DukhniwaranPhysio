@@ -111,7 +111,14 @@ export default function Booking() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+    // Only require patientName, patientPhone, and therapyId
+    if (!formData.patientName || !formData.patientPhone || !formData.therapyId) {
+      toast({
+        title: "Please fill in all required fields: Name, Phone Number, and Select Therapy.",
+        variant: "destructive",
+      });
+      return;
+    }
     const bookingData: InsertBooking = {
       userId: user?.id,
       therapyId: parseInt(formData.therapyId),
@@ -119,12 +126,11 @@ export default function Booking() {
       patientPhone: formData.patientPhone,
       patientEmail: formData.patientEmail || undefined,
       patientAge: formData.patientAge ? parseInt(formData.patientAge) : undefined,
-      appointmentDate: formData.appointmentDate,
-      appointmentTime: formData.appointmentTime,
+      appointmentDate: formData.appointmentDate || undefined,
+      appointmentTime: formData.appointmentTime || undefined,
       additionalNotes: formData.additionalNotes || undefined,
       status: "pending",
     };
-
     bookingMutation.mutate(bookingData);
   };
 
@@ -293,7 +299,7 @@ export default function Booking() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="appointmentDate">
-                    Preferred Date <span className="text-red-500">*</span>
+                    Preferred Date
                   </Label>
                   <Input
                     id="appointmentDate"
@@ -302,18 +308,16 @@ export default function Booking() {
                     min={minDate}
                     value={formData.appointmentDate}
                     onChange={handleInputChange}
-                    required
                     className="mt-1"
                   />
                 </div>
                 <div>
                   <Label htmlFor="appointmentTime">
-                    Preferred Time <span className="text-red-500">*</span>
+                    Preferred Time
                   </Label>
                   <Select
                     value={formData.appointmentTime}
                     onValueChange={(value) => handleSelectChange("appointmentTime", value)}
-                    required
                   >
                     <SelectTrigger className="mt-1">
                       <SelectValue placeholder="Select time slot" />
@@ -416,15 +420,24 @@ export default function Booking() {
                           {getTherapyName(booking.therapyId)}
                         </h4>
                         <p className="text-gray-600">
-                          Date: {new Date(booking.appointmentDate).toLocaleDateString()} at{" "}
-                          {new Date(`2000-01-01T${booking.appointmentTime}`).toLocaleTimeString('en-US', { 
+                          Date: {booking.appointmentDate ? new Date(booking.appointmentDate).toLocaleDateString() : '-'} at{" "}
+                          {booking.appointmentTime ? new Date(`2000-01-01T${booking.appointmentTime}`).toLocaleTimeString('en-US', { 
                             hour: 'numeric', 
                             minute: '2-digit', 
                             hour12: true 
-                          })}
+                          }) : '-'}
                         </p>
                         <p className="text-gray-600">
-                          Patient: {booking.patientName}
+                          Patient: {booking.patientName || '-'}
+                        </p>
+                        <p className="text-gray-600">
+                          Email: {booking.patientEmail || '-'}
+                        </p>
+                        <p className="text-gray-600">
+                          Age: {booking.patientAge ?? '-'}
+                        </p>
+                        <p className="text-gray-600">
+                          Notes: {booking.additionalNotes || '-'}
                         </p>
                         <p className="text-gray-600">
                           Status:{" "}

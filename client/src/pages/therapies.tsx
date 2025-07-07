@@ -53,14 +53,21 @@ export default function Therapies() {
   }
 
   const therapyImages: Record<string, string> = {
-    "Cupping Therapy": "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "Hijama Therapy": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "IASTM Therapy": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "Dry Needling": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "Tennis Elbow Treatment": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "Sciatica Treatment": "https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "Frozen Shoulder": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
-    "Posture Correction": "https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300",
+    "Cupping Therapy": "/static/PhysioImages/cupping.jpg",
+    "Hijama Therapy": "/static/PhysioImages/Hijama.jpg",
+    "IASTM Therapy": "/static/PhysioImages/IASTM.jpg",
+    "Dry Needling": "/static/PhysioImages/dryneedling.jpg",
+    "Tennis Elbow Treatment": "/static/PhysioImages/chiropractic.jpg",
+    "Sciatica Treatment": "/static/PhysioImages/chiropractic.jpg",
+    "Frozen Shoulder": "/static/PhysioImages/chiropractic.jpg",
+    "Posture Correction": "/static/PhysioImages/chiropractic.jpg",
+    "Electrotherapy": "/static/PhysioImages/electrotherapy.jpeg",
+    "Laser Therapy": "/static/PhysioImages/laserTherapy.jpg",
+    "Mat Pilates": "/static/PhysioImages/matPilates.jpg",
+    "Rehabilitation": "/static/PhysioImages/Rehabilitation.jpeg",
+    "Diet Consultation": "/static/PhysioImages/diet.jpeg",
+    "Injury Prevention Programs": "/static/PhysioImages/InjuryPreventionPrograms%20.png",
+    // Add more mappings as needed
   };
 
   return (
@@ -85,7 +92,7 @@ export default function Therapies() {
           {therapies?.map((therapy) => (
             <Card key={therapy.id} className="bg-white overflow-hidden hover:shadow-lg transition-shadow">
               <img 
-                src={therapyImages[therapy.name] || "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300"}
+                src={therapyImages[therapy.name] || "static/PhysioImages/matPilates.jpg"}
                 alt={`${therapy.name} session`}
                 className="w-full h-48 object-cover"
               />

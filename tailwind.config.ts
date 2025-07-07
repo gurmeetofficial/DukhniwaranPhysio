@@ -61,6 +61,12 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        medical: {
+          blue: "hsl(207, 90%, 54%)",
+          dark: "hsl(207, 90%, 45%)",
+          green: "hsl(145, 63%, 49%)",
+          orange: "hsl(43, 96%, 56%)"
+        },
       },
       keyframes: {
         "accordion-down": {

@@ -61,9 +61,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use(cookieParser());
 
   app.get('/sitemap.xml', (req, res) => {
-    res.header('Content-Type', 'application/xml');
-    res.send('../public/sitemap.xml');
-  })
+  const sitemapPath = path.resolve(process.cwd(), 'client/public/sitemap.xml');
+  res.header('Content-Type', 'application/xml');
+  res.sendFile(sitemapPath, (err) => {
+    if (err) {
+      res.status(404).send('Sitemap not found');
+    }
+  });
+});
+
   // Auth routes
   app.post("/api/auth/register", async (req, res) => {
     try {

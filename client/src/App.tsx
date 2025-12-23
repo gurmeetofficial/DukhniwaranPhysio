@@ -16,6 +16,7 @@ import Booking from "@/pages/booking";
 import Login from "@/pages/login";
 import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
+import Blog from "@/pages/blog";
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
           <Route path="/booking" component={Booking} />
           <Route path="/login" component={Login} />
           <Route path="/admin" component={Admin} />
+          <Route path="/blog" component={Blog} />
           <Route component={NotFound} />
         </Switch>
       </main>

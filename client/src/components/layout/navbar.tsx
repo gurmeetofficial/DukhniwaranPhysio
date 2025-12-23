@@ -14,6 +14,7 @@ export function Navbar() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Therapies", href: "/therapies" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 

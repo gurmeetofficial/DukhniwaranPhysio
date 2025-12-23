@@ -5,6 +5,8 @@ import { insertUserSchema, insertBookingSchema, insertContactSchema, insertThera
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookieParser from 'cookie-parser';
+import fs from "fs";
+import path from "path";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
@@ -57,6 +59,11 @@ function mongoToApp(obj: any) {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.use(cookieParser());
+
+  app.get('/sitemap.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml');
+    res.send('../public/sitemap.xml');
+  })
   // Auth routes
   app.post("/api/auth/register", async (req, res) => {
     try {
@@ -355,6 +362,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Physiotherapist not found" });
       }
       res.json({ message: "Physiotherapist deleted successfully" });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  // Blog routes
+  app.get("/api/blogs", async (req, res) => {
+    try {
+      // Use process.cwd() to get project root, then resolve to client/public/blogs
+      const blogsDir = path.join(process.cwd(), "client/public/blogs");
+      const files = fs.readdirSync(blogsDir).filter(f => f.endsWith(".html"));
+      const blogs = files.map(filename => {
+        const filePath = path.join(blogsDir, filename);
+        const content = fs.readFileSync(filePath, "utf-8");
+        const match = content.match(/<title>(.*?)<\/title>/i);
+        const title = match ? match[1] : filename;
+        return { filename, title };
+      });
+      res.json(blogs);
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  });
+
+  app.post("/api/blogs", authenticateToken, async (req, res) => {
+    try {
+      const { title, html } = req.body;
+      if (!title || !html) return res.status(400).json({ message: "Title and HTML required" });
+      const safeTitle = title.replace(/[^a-z0-9-_]/gi, "_");
+      const filename = `${Date.now()}_${safeTitle}.html`;
+      const blogsDir = path.join(process.cwd(), "client/public/blogs");
+      if (!fs.existsSync(blogsDir)) fs.mkdirSync(blogsDir, { recursive: true });
+      fs.writeFileSync(path.join(blogsDir, filename), html, "utf-8");
+      res.json({ message: "Blog saved", filename });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }

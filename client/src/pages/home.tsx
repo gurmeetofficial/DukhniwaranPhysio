@@ -71,7 +71,7 @@ export default function Home() {
             </div>
             <div className="relative animate-slide-up">
               <img 
-                src="static/PhysioImages/Cupping.jpg" 
+                src="static/PhysioImages/cupping.webp" 
                 alt="Modern physiotherapy clinic interior in Panipat with professional equipment" 
                 className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
               />

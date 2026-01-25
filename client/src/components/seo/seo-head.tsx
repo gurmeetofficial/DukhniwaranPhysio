@@ -18,7 +18,7 @@ export function SEOHead({
   canonical,
   ogTitle,
   ogDescription,
-  ogImage = "static/PhysioImages/matPilates.jpg",
+  ogImage = "static/PhysioImages/matPilates.webp",
   schema
 }: SEOHeadProps) {
   useEffect(() => {

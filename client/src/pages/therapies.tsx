@@ -53,20 +53,20 @@ export default function Therapies() {
   }
 
   const therapyImages: Record<string, string> = {
-    "Cupping Therapy": "/static/PhysioImages/cupping.jpg",
-    "Hijama Therapy": "/static/PhysioImages/Hijama.jpg",
-    "IASTM Therapy": "/static/PhysioImages/IASTM.jpg",
-    "Dry Needling": "/static/PhysioImages/dryneedling.jpg",
-    "Tennis Elbow Treatment": "/static/PhysioImages/chiropractic.jpg",
-    "Sciatica Treatment": "/static/PhysioImages/chiropractic.jpg",
-    "Frozen Shoulder": "/static/PhysioImages/chiropractic.jpg",
-    "Posture Correction": "/static/PhysioImages/chiropractic.jpg",
-    "Electrotherapy": "/static/PhysioImages/electrotherapy.jpeg",
-    "Laser Therapy": "/static/PhysioImages/laserTherapy.jpg",
-    "Mat Pilates": "/static/PhysioImages/matPilates.jpg",
-    "Rehabilitation": "/static/PhysioImages/Rehabilitation.jpeg",
-    "Diet Consultation": "/static/PhysioImages/diet.jpeg",
-    "Injury Prevention Programs": "/static/PhysioImages/InjuryPreventionPrograms%20.png",
+    "Cupping Therapy": "/static/PhysioImages/cupping.webp",
+    "Hijama Therapy": "/static/PhysioImages/Hijama.webp",
+    "IASTM Therapy": "/static/PhysioImages/IASTM.webp",
+    "Dry Needling": "/static/PhysioImages/dryneedling.webp",
+    "Tennis Elbow Treatment": "/static/PhysioImages/chiropractic.webp",
+    "Sciatica Treatment": "/static/PhysioImages/chiropractic.webp",
+    "Frozen Shoulder": "/static/PhysioImages/chiropractic.webp",
+    "Posture Correction": "/static/PhysioImages/chiropractic.webp",
+    "Electrotherapy": "/static/PhysioImages/electrotherapy.webp",
+    "Laser Therapy": "/static/PhysioImages/laserTherapy.webp",
+    "Mat Pilates": "/static/PhysioImages/matPilates.webp",
+    "Rehabilitation": "/static/PhysioImages/Rehabilitation.webp",
+    "Diet Consultation": "/static/PhysioImages/diet.webp",
+    "Injury Prevention Programs": "/static/PhysioImages/InjuryPreventionPrograms%20.webp",
     // Add more mappings as needed
   };
 
@@ -92,7 +92,7 @@ export default function Therapies() {
           {therapies?.map((therapy) => (
             <Card key={therapy.id} className="bg-white overflow-hidden hover:shadow-lg transition-shadow">
               <img 
-                src={therapyImages[therapy.name] || "static/PhysioImages/matPilates.jpg"}
+                src={therapyImages[therapy.name] || "static/PhysioImages/matPilates.webp"}
                 alt={`${therapy.name} session`}
                 className="w-full h-48 object-cover"
               />

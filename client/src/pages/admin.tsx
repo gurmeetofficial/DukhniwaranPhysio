@@ -749,7 +749,7 @@ export default function Admin() {
                       <Card key={physio.id} className="text-center hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <img 
-                            src={physio.image || "static/PhysioImages/matPilates.jpgs"}
+                            src={physio.image || "static/PhysioImages/matPilates.webp"}
                             alt={physio.name}
                             className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-medical-blue/20"
                           />

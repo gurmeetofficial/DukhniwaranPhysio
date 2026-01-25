@@ -24,4 +24,56 @@
         <loc>https://dukhniwaranphysio.com/login</loc>
         <priority>0.5</priority>
     </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blog</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/1766503373887_Hijama_Therapy.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/Cupping.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/cervical-spondylosis-neck-stiffness.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/dry-needling.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/electrotherapy.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/frozen-shoulder-rotator-cuff.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/iastm.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/knee-hip-osteoarthritis.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/laser-therapy.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/rehabilitation.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/rheumatoid-arthritis.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://dukhniwaranphysio.com/blogs/slipped-disc-back-pain.html</loc>
+        <priority>0.6</priority>
+    </url>
 </urlset>

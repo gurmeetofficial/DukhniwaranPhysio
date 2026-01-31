@@ -1,0 +1,26 @@
+{
+    "name": "Dukhniwaran Physiotherapy",
+    "short_name": "Dukhniwaran Physio",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0ea5e9",
+    "description": "Expert physiotherapy services in Panipat. Book appointments online.",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/static/PhysioImages/logo.webp",
+            "type": "image/webp",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/static/PhysioImages/logo.webp",
+            "type": "image/webp",
+            "sizes": "512x512"
+        }
+    ]
+}

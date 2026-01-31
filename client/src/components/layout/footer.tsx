@@ -4,7 +4,7 @@ import { Heart, Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2">
             <div className="flex items-center mb-4">
@@ -68,19 +68,26 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-gray-300">
-              <p className="flex items-center">
+              <a href="tel:+917015017485" className="flex items-center hover:text-medical-blue transition-colors">
                 <Phone className="h-4 w-4 mr-2" />
                 +91 7015017485
-              </p>
-              <p className="flex items-center">
+              </a>
+              <a href="mailto:dukhniwaranphysio@gmail.com" className="flex items-center hover:text-medical-blue transition-colors">
                 <Mail className="h-4 w-4 mr-2" />
                 dukhniwaranphysio@gmail.com
-              </p>
-              <p className="flex items-start">
+              </a>
+              <a
+                href="https://maps.app.goo.gl/CVWdURwapgMLsYBP9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start hover:text-medical-blue transition-colors"
+              >
                 <MapPin className="h-4 w-4 mr-2 mt-1" />
-                736, opposite ekta park<br />
-                near lucky bakery, Model Town, Panipat, Haryana 132103
-              </p>
+                <span>
+                  736, opposite ekta park<br />
+                  near lucky bakery, Model Town, Panipat, Haryana 132103
+                </span>
+              </a>
             </div>
           </div>
         </div>

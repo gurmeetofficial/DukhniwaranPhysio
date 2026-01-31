@@ -33,21 +33,29 @@ export function Navbar() {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       {/* Contact Info Bar */}
       <div className="bg-medical-blue text-white py-2 text-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container">
           <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
-            <div className="flex items-center mb-1 sm:mb-0">
+            <a
+              href="tel:+917015017485"
+              className="flex items-center mb-1 sm:mb-0 hover:text-white/80 transition-colors"
+            >
               <Phone className="h-4 w-4 mr-2" />
               <span className="font-medium">+91-7015017485</span>
-            </div>
-            <div className="flex items-center">
+            </a>
+            <a
+              href="https://maps.app.goo.gl/CVWdURwapgMLsYBP9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center hover:text-white/80 transition-colors"
+            >
               <MapPin className="h-4 w-4 mr-2" />
               <span>736, opposite ekta park, near lucky bakery, Model Town, Panipat, Haryana 132103</span>
-            </div>
+            </a>
           </div>
         </div>
       </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div className="page-container">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Heart className="text-medical-blue text-2xl mr-2" />
@@ -64,11 +72,10 @@ export function Navbar() {
               {navigation.map((item) => (
                 <Link key={item.name} href={item.href}>
                   <span
-                    className={`px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors ${
-                      isActive(item.href)
-                        ? "text-medical-blue border-b-2 border-medical-blue"
-                        : "text-gray-700 hover:text-medical-blue"
-                    }`}
+                    className={`px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors ${isActive(item.href)
+                      ? "text-medical-blue border-b-2 border-medical-blue"
+                      : "text-gray-700 hover:text-medical-blue"
+                      }`}
                   >
                     {item.name}
                   </span>
@@ -127,11 +134,10 @@ export function Navbar() {
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <span
-                        className={`block px-3 py-2 rounded-md text-base font-medium cursor-pointer ${
-                          isActive(item.href)
-                            ? "text-medical-blue"
-                            : "text-gray-700 hover:text-medical-blue"
-                        }`}
+                        className={`block px-3 py-2 rounded-md text-base font-medium cursor-pointer ${isActive(item.href)
+                          ? "text-medical-blue"
+                          : "text-gray-700 hover:text-medical-blue"
+                          }`}
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}

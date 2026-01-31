@@ -78,7 +78,7 @@ export default function Therapies() {
         keywords="cupping therapy Panipat, dry needling Panipat, IASTM therapy, sciatica treatment Panipat, frozen shoulder treatment, tennis elbow therapy, hijama therapy Panipat, postural correction therapy, physiotherapy services Panipat"
         schema={getArticleSchema("Physiotherapy Services in Panipat", "Complete range of physiotherapy treatments available in Panipat")}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Our Specialized Therapies
@@ -90,16 +90,16 @@ export default function Therapies() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {therapies?.map((therapy) => (
-            <Card key={therapy.id} className="bg-white overflow-hidden hover:shadow-lg transition-shadow">
-              <img 
+            <Card key={therapy.id} className="bg-white overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+              <img
                 src={therapyImages[therapy.name] || "static/PhysioImages/matPilates.webp"}
                 alt={`${therapy.name} session`}
                 className="w-full h-48 object-cover"
               />
-              <CardContent className="p-6">
+              <CardContent className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{therapy.name}</h3>
-                <p className="text-gray-800 mb-4 font-medium">{therapy.description}</p>
-                <div className="flex items-center justify-between">
+                <p className="text-gray-800 mb-4 font-medium flex-grow">{therapy.description}</p>
+                <div className="flex items-center justify-between mt-auto pt-4">
                   <span className="text-medical-blue font-semibold">
                     ₹{therapy.priceMin} - ₹{therapy.priceMax}
                   </span>

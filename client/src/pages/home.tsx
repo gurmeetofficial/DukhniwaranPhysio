@@ -212,8 +212,8 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
-                <CardContent className="pt-6">
+              <Card key={index} className="p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-1 animate-fade-in h-full flex flex-col" style={{ animationDelay: `${index * 0.2}s` }}>
+                <CardContent className="pt-6 flex-grow flex flex-col">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">
                       {[...Array(testimonial.rating)].map((_, i) => (
@@ -222,9 +222,9 @@ export default function Home() {
                     </div>
                     <span className="ml-2 text-gray-600 text-sm font-medium">5.0</span>
                   </div>
-                  <p className="text-gray-800 mb-4 leading-relaxed italic font-medium">"{testimonial.comment}"</p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-medical-blue to-medical-dark rounded-full flex items-center justify-center mr-3">
+                  <p className="text-gray-800 mb-6 leading-relaxed italic font-medium">"{testimonial.comment}"</p>
+                  <div className="flex items-center mt-auto">
+                    <div className="w-12 h-12 bg-gradient-to-br from-medical-blue to-medical-dark rounded-full flex items-center justify-center mr-3 shrink-0">
                       <UserCheck className="text-white h-6 w-6" />
                     </div>
                     <div>
@@ -264,37 +264,34 @@ export default function Home() {
       </section>
 
       {/* Instagram & YouTube Feed Section */}
+      {/* Instagram & YouTube Feed Section */}
       <section className="py-12 bg-white">
-        <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+        <div className="page-container grid md:grid-cols-2 gap-8">
           {/* Instagram */}
-          <div>
+          <div className="flex flex-col items-center">
             <h2 className="text-2xl font-bold text-center mb-6 text-medical-blue">Follow Us On Instagram</h2>
-            <div className="flex justify-center">
+            <div className="w-full flex justify-center h-[500px]">
               <iframe
                 src="https://www.instagram.com/p/DLtxeQIpkci/embed"
-                width="400"
-                height="480"
+                className="w-full max-w-[400px] h-full border rounded-xl shadow-sm"
                 frameBorder="0"
                 scrolling="no"
                 allowTransparency={true}
                 title="Instagram Post"
-                style={{ borderRadius: '12px', border: '1px solid #e6e6e6' }}
               ></iframe>
             </div>
           </div>
           {/* YouTube */}
-          <div>
+          <div className="flex flex-col items-center">
             <h2 className="text-2xl font-bold text-center mb-6 text-red-600">Watch Us On YouTube</h2>
-            <div className="flex justify-center">
+            <div className="w-full flex justify-center items-center h-[500px] bg-gray-50 rounded-xl border">
               <iframe
-                width="400"
-                height="225"
+                className="w-full max-w-[560px] aspect-video rounded-xl shadow-sm"
                 src="https://www.youtube.com/embed/brL1Vnb_fnk"
                 title="YouTube Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                style={{ borderRadius: '12px', border: '1px solid #e6e6e6' }}
               ></iframe>
             </div>
           </div>

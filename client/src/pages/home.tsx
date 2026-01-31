@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { SEOHead, getBusinessSchema } from "@/components/seo/seo-head";
-import { 
-  UserCheck, 
-  Award, 
-  Heart, 
-  Star, 
-  CalendarCheck, 
+import { BMICalculator } from "@/components/tools/bmi-calculator";
+import {
+  UserCheck,
+  Award,
+  Heart,
+  Star,
+  CalendarCheck,
   Phone,
   Wrench,
   MapPin,
@@ -23,7 +24,7 @@ export default function Home() {
       role: "Verified Patient"
     },
     {
-      name: "Amaninder Singh", 
+      name: "Amaninder Singh",
       rating: 5,
       comment: "One of the best place to get my physio done. I go to gym everyday and need regular physio. This is the place where i love to visit. I specially come from delhi to this place. God bless Dr. Jasmeet Singh. He is very intelligent and experienced.",
       role: "Verified Patient"
@@ -47,7 +48,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-medical-blue via-medical-dark to-blue-900 text-white py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative page-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h1 className="font-heading text-4xl lg:text-6xl font-bold mb-6 leading-tight text-balance">
@@ -70,9 +71,9 @@ export default function Home() {
               </div>
             </div>
             <div className="relative animate-slide-up">
-              <img 
-                src="static/PhysioImages/cupping.webp" 
-                alt="Modern physiotherapy clinic interior in Panipat with professional equipment" 
+              <img
+                src="static/PhysioImages/cupping.webp"
+                alt="Modern physiotherapy clinic interior in Panipat with professional equipment"
                 className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg backdrop-blur-custom">
@@ -93,7 +94,7 @@ export default function Home() {
 
       {/* Contact Banner */}
       <div className="bg-medical-blue text-white py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container">
           <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left">
             <div className="mb-4 md:mb-0">
               <div className="flex items-center justify-center md:justify-start mb-2">
@@ -116,7 +117,7 @@ export default function Home() {
 
       {/* Clinic Introduction */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
               Why Choose Dukhniwaran Physiotherapy in Panipat?
@@ -127,8 +128,8 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in">
-              <CardContent className="pt-6">
+            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in h-full flex flex-col">
+              <CardContent className="pt-6 flex-grow">
                 <div className="bg-gradient-to-br from-medical-blue to-medical-dark rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <UserCheck className="text-white h-8 w-8" />
                 </div>
@@ -139,8 +140,8 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in" style={{animationDelay: '0.2s'}}>
-              <CardContent className="pt-6">
+            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in h-full flex flex-col" style={{ animationDelay: '0.2s' }}>
+              <CardContent className="pt-6 flex-grow">
                 <div className="bg-gradient-to-br from-medical-green to-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <Wrench className="text-white h-8 w-8" />
                 </div>
@@ -151,8 +152,8 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in" style={{animationDelay: '0.4s'}}>
-              <CardContent className="pt-6">
+            <Card className="text-center p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-2 animate-fade-in h-full flex flex-col" style={{ animationDelay: '0.4s' }}>
+              <CardContent className="pt-6 flex-grow">
                 <div className="bg-gradient-to-br from-medical-orange to-orange-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <Heart className="text-white h-8 w-8" />
                 </div>
@@ -166,9 +167,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BMI Calculator Section */}
+      <section className="py-16 bg-blue-50">
+        <div className="page-container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-6 text-balance">
+                Check Your Body Mass Index (BMI)
+              </h2>
+              <p className="text-xl text-gray-800 mb-6 leading-relaxed font-medium">
+                Maintaining a healthy weight is crucial for your musculoskeletal health. Excess weight can put additional stress on your joints, while being underweight can affect bone density.
+              </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center text-gray-700">
+                  <div className="bg-green-100 rounded-full p-1 mr-3">
+                    <CalendarCheck className="h-5 w-5 text-green-600" />
+                  </div>
+                  <span className="font-medium">Instant calculation</span>
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <div className="bg-green-100 rounded-full p-1 mr-3">
+                    <Heart className="h-5 w-5 text-green-600" />
+                  </div>
+                  <span className="font-medium">Health category insights</span>
+                </li>
+              </ul>
+            </div>
+            <div className="animate-fade-in">
+              <BMICalculator />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="page-container">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-balance">
               What Our Patients Say About Dukhniwaran Physiotherapy
@@ -178,7 +212,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{animationDelay: `${index * 0.2}s`}}>
+              <Card key={index} className="p-6 hover:shadow-custom transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
                 <CardContent className="pt-6">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">
@@ -206,18 +240,18 @@ export default function Home() {
           <div className="text-center mt-12">
             <p className="text-gray-800 mb-4 font-medium">See more reviews on Google Maps:</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="https://maps.app.goo.gl/CVWdURwapgMLsYBP9" 
-                target="_blank" 
+              <a
+                href="https://maps.app.goo.gl/CVWdURwapgMLsYBP9"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 border border-medical-blue text-medical-blue hover:bg-medical-blue hover:text-white rounded-lg transition-colors font-medium"
               >
                 View Google Reviews
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
-              <a 
-                href="https://maps.app.goo.gl/eA83GmCDmj9TuyWGA" 
-                target="_blank" 
+              <a
+                href="https://maps.app.goo.gl/eA83GmCDmj9TuyWGA"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 border border-medical-blue text-medical-blue hover:bg-medical-blue hover:text-white rounded-lg transition-colors font-medium"
               >

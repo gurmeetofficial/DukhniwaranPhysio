@@ -10,7 +10,7 @@ export default function About() {
 
   const highlights = [
     "Licensed Professionals",
-    "Modern Techniques", 
+    "Modern Techniques",
     "Personalized Care",
     "Proven Results"
   ];
@@ -23,7 +23,7 @@ export default function About() {
         keywords="physiotherapy team Panipat, Dr Sarah Miller physiotherapist, expert physiotherapists Panipat, about Dukhniwaran Physiotherapy, physiotherapy clinic team"
         schema={getArticleSchema("About Dukhniwaran Physiotherapy Team", "Professional physiotherapy team in Panipat with specialized expertise")}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-6 text-balance">
@@ -35,7 +35,7 @@ export default function About() {
             <p className="text-lg text-gray-800 mb-8 leading-relaxed font-medium">
               Our mission is to help patients in Panipat achieve optimal health and wellness through personalized treatment plans, compassionate care, and evidence-based practices. We believe in treating the whole person, not just the symptoms.
             </p>
-            
+
             <div className="grid sm:grid-cols-2 gap-6">
               {highlights.map((highlight, index) => (
                 <div key={index} className="flex items-center">
@@ -48,9 +48,9 @@ export default function About() {
             </div>
           </div>
           <div>
-            <img 
-              src="static/PhysioImages/matPilates.webp" 
-              alt="Dukhniwaran Physiotherapy team working with patient in Panipat clinic" 
+            <img
+              src="static/PhysioImages/matPilates.webp"
+              alt="Dukhniwaran Physiotherapy team working with patient in Panipat clinic"
               className="rounded-2xl shadow-custom w-full h-auto transform hover:scale-105 transition-transform duration-300"
             />
           </div>
@@ -63,17 +63,17 @@ export default function About() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {teamMembers?.map((member, index) => (
-              <Card key={index} className="text-center hover:shadow-custom transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="pt-6">
-                  <img 
+              <Card key={index} className="text-center hover:shadow-custom transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
+                <CardContent className="pt-6 flex-grow flex flex-col">
+                  <img
                     src={member.image}
                     alt={`${member.name} - ${member.role} at Dukhniwaran Physiotherapy Panipat`}
                     className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-medical-blue/20 shadow-lg"
                   />
                   <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
                   <p className="text-medical-blue font-medium mb-2">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-2">{member.description}</p>
-                  <p className="text-gray-500 text-xs">{member.experience} • {member.specializations}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">{member.description}</p>
+                  <p className="text-gray-500 text-xs mt-auto">{member.experience} • {member.specializations}</p>
                 </CardContent>
               </Card>
             ))}

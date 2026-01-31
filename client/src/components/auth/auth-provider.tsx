@@ -25,7 +25,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const { data: currentUser, isLoading } = useQuery({
     queryKey: ["/api/auth/me"],
-    enabled: auth.isAuthenticated(),
     retry: false,
   });
 
@@ -33,7 +32,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (currentUser && Object.keys(currentUser).length > 0) {
       setUser(currentUser as User);
       setIsAuthenticated(true);
-    } else if (!auth.isAuthenticated()) {
+    } else {
       setUser(null);
       setIsAuthenticated(false);
     }
@@ -41,7 +40,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     const response = await auth.login(email, password);
-    auth.setToken(response.token);
     console.log("Login response:", response.user);
     setUser(response.user);
     setIsAuthenticated(true);
@@ -55,7 +53,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     phone: string;
   }) => {
     const response = await auth.register(userData);
-    auth.setToken(response.token);
     setUser(response.user);
     setIsAuthenticated(true);
   };

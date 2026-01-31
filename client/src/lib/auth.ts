@@ -36,20 +36,8 @@ export const auth = {
     return response.json();
   },
 
-  logout: () => {
-    localStorage.removeItem("token");
+  logout: async () => {
+    await apiRequest("POST", "/api/auth/logout");
     window.location.href = "/";
-  },
-
-  getToken: (): string | null => {
-    return localStorage.getItem("token");
-  },
-
-  setToken: (token: string) => {
-    localStorage.setItem("token", token);
-  },
-
-  isAuthenticated: (): boolean => {
-    return !!localStorage.getItem("token");
   },
 };

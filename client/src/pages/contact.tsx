@@ -8,12 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { SEOHead, getArticleSchema } from "@/components/seo/seo-head";
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  Send 
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Send
 } from "lucide-react";
 import type { InsertContact } from "@shared/schema";
 
@@ -75,7 +75,7 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
         keywords="contact physiotherapy Panipat, Dukhniwaran Physiotherapy address, physiotherapy clinic Panipat phone number, book appointment physiotherapy Panipat, physiotherapy clinic working hours"
         schema={getArticleSchema("Contact Dukhniwaran Physiotherapy", "Get in touch with our physiotherapy clinic in Panipat")}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
           <p className="text-xl text-gray-800 font-medium">
@@ -89,9 +89,14 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
             <Card className="p-8">
               <CardContent className="p-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
-                
+
                 <div className="space-y-6">
-                  <div className="flex items-start">
+                  <a
+                    href="https://maps.app.goo.gl/CVWdURwapgMLsYBP9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start hover:bg-gray-50 p-2 rounded-lg transition-colors -mx-2"
+                  >
                     <div className="bg-medical-blue rounded-full p-3 mr-4">
                       <MapPin className="text-white h-5 w-5" />
                     </div>
@@ -102,9 +107,12 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
                         near lucky bakery, Model Town, Panipat, Haryana 132103
                       </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-start">
+                  <a
+                    href="tel:+917015017485"
+                    className="flex items-start hover:bg-gray-50 p-2 rounded-lg transition-colors -mx-2"
+                  >
                     <div className="bg-medical-blue rounded-full p-3 mr-4">
                       <Phone className="text-white h-5 w-5" />
                     </div>
@@ -112,9 +120,12 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
                       <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
                       <p className="text-gray-600">+91 7015017485</p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-start">
+                  <a
+                    href="mailto:dukhniwaranphysio@gmail.com"
+                    className="flex items-start hover:bg-gray-50 p-2 rounded-lg transition-colors -mx-2"
+                  >
                     <div className="bg-medical-blue rounded-full p-3 mr-4">
                       <Mail className="text-white h-5 w-5" />
                     </div>
@@ -122,9 +133,9 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
                       <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
                       <p className="text-gray-600">dukhniwaranphysio@gmail.com</p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-start">
+                  <div className="flex items-start p-2 -mx-2">
                     <div className="bg-medical-blue rounded-full p-3 mr-4">
                       <Clock className="text-white h-5 w-5" />
                     </div>
@@ -144,7 +155,7 @@ near lucky bakery, Model Town, Panipat, Haryana 132103. Working hours: Mon-Sat 9
             <Card className="p-8">
               <CardContent className="p-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>

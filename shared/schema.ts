@@ -31,8 +31,8 @@ export const bookings = pgTable("bookings", {
   patientPhone: text("patient_phone").notNull(),
   patientEmail: text("patient_email"),
   patientAge: integer("patient_age"),
-  appointmentDate: text("appointment_date").notNull(),
-  appointmentTime: text("appointment_time").notNull(),
+  appointmentDate: text("appointment_date"),
+  appointmentTime: text("appointment_time"),
   additionalNotes: text("additional_notes"),
   status: text("status").notNull().default("pending"), // pending, confirmed, cancelled
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -74,8 +74,8 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   id: true,
   createdAt: true,
 }).extend({
-  appointmentDate: z.string().nullable(),
-  appointmentTime: z.string().nullable(),
+  appointmentDate: z.string().optional().nullable(),
+  appointmentTime: z.string().optional().nullable(),
 });
 
 export const insertContactSchema = createInsertSchema(contacts).omit({

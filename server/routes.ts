@@ -54,7 +54,7 @@ function mongoToApp(obj: any) {
   if (Array.isArray(obj)) return obj.map(mongoToApp);
   const { _id, ...rest } = obj;
   const camel = toCamel(rest);
-  return { id: _id?.toString(), ...camel };
+  return { ...camel, id: _id?.toString() };
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {

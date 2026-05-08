@@ -3,11 +3,18 @@ import bcrypt from "bcrypt";
 import { ObjectId } from 'mongodb';
 import { type User, type InsertUser, type Therapy, type InsertTherapy, type Booking, type InsertBooking, type Contact, type InsertContact, type Physiotherapist, type InsertPhysiotherapist } from "@shared/schema";
 
+function parseId(id: string): any {
+  if (/^\d+$/.test(id)) {
+    return parseInt(id, 10);
+  }
+  return new ObjectId(id);
+}
+
 export class MongoStorage {
   // Users
   async getUser(id: string): Promise<User | undefined> {
     const db = await getDb();
-    return db.collection('users').findOne({ _id: new ObjectId(id) });
+    return db.collection('users').findOne({ _id: parseId(id) });
   }
   async getUserByEmail(email: string): Promise<User | undefined> {
     const db = await getDb();
@@ -31,7 +38,7 @@ export class MongoStorage {
   }
   async getTherapy(id: string): Promise<Therapy | undefined> {
     const db = await getDb();
-    return db.collection('therapies').findOne({ _id: new ObjectId(id) });
+    return db.collection('therapies').findOne({ _id: parseId(id) });
   }
   async createTherapy(therapy: InsertTherapy): Promise<Therapy> {
     const db = await getDb();
@@ -42,8 +49,8 @@ export class MongoStorage {
   }
   async updateTherapy(id: string, updates: Partial<InsertTherapy>): Promise<Therapy | undefined> {
     const db = await getDb();
-    await db.collection('therapies').updateOne({ _id: new ObjectId(id) }, { $set: updates });
-    return db.collection('therapies').findOne({ _id: new ObjectId(id) });
+    await db.collection('therapies').updateOne({ _id: parseId(id) }, { $set: updates });
+    return db.collection('therapies').findOne({ _id: parseId(id) });
   }
 
   // Bookings
@@ -53,11 +60,11 @@ export class MongoStorage {
   }
   async getBookingsByUser(userId: string): Promise<Booking[]> {
     const db = await getDb();
-    return db.collection('bookings').find({ userId }).toArray();
+    return db.collection('bookings').find({ userId });
   }
   async getBooking(id: string): Promise<Booking | undefined> {
     const db = await getDb();
-    return db.collection('bookings').findOne({ _id: new ObjectId(id) });
+    return db.collection('bookings').findOne({ _id: parseId(id) });
   }
   async createBooking(booking: InsertBooking): Promise<Booking> {
     const db = await getDb();
@@ -68,12 +75,12 @@ export class MongoStorage {
   }
   async updateBooking(id: string, updates: Partial<InsertBooking>): Promise<Booking | undefined> {
     const db = await getDb();
-    await db.collection('bookings').updateOne({ _id: new ObjectId(id) }, { $set: updates });
-    return db.collection('bookings').findOne({ _id: new ObjectId(id) });
+    await db.collection('bookings').updateOne({ _id: parseId(id) }, { $set: updates });
+    return db.collection('bookings').findOne({ _id: parseId(id) });
   }
   async deleteBooking(id: string): Promise<boolean> {
     const db = await getDb();
-    const result = await db.collection('bookings').deleteOne({ _id: new ObjectId(id) });
+    const result = await db.collection('bookings').deleteOne({ _id: parseId(id) });
     return result.deletedCount > 0;
   }
 
@@ -91,7 +98,7 @@ export class MongoStorage {
   }
   async getContact(id: string): Promise<Contact | undefined> {
     const db = await getDb();
-    return db.collection('contacts').findOne({ _id: new ObjectId(id) });
+    return db.collection('contacts').findOne({ _id: parseId(id) });
   }
 
   // Physiotherapists
@@ -101,7 +108,7 @@ export class MongoStorage {
   }
   async getPhysiotherapist(id: string): Promise<Physiotherapist | undefined> {
     const db = await getDb();
-    return db.collection('physiotherapists').findOne({ _id: new ObjectId(id) });
+    return db.collection('physiotherapists').findOne({ _id: parseId(id) });
   }
   async createPhysiotherapist(physio: InsertPhysiotherapist): Promise<Physiotherapist> {
     const db = await getDb();
@@ -112,12 +119,12 @@ export class MongoStorage {
   }
   async updatePhysiotherapist(id: string, updates: Partial<InsertPhysiotherapist>): Promise<Physiotherapist | undefined> {
     const db = await getDb();
-    await db.collection('physiotherapists').updateOne({ _id: new ObjectId(id) }, { $set: updates });
-    return db.collection('physiotherapists').findOne({ _id: new ObjectId(id) });
+    await db.collection('physiotherapists').updateOne({ _id: parseId(id) }, { $set: updates });
+    return db.collection('physiotherapists').findOne({ _id: parseId(id) });
   }
   async deletePhysiotherapist(id: string): Promise<boolean> {
     const db = await getDb();
-    const result = await db.collection('physiotherapists').deleteOne({ _id: new ObjectId(id) });
+    const result = await db.collection('physiotherapists').deleteOne({ _id: parseId(id) });
     return result.deletedCount > 0;
   }
 }

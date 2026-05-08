@@ -83,9 +83,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const user = await storage.createUser(userData);
       const token = jwt.sign({ 
-        id: user.id, 
+        id: user._id.toString(),
         email: user.email, 
-        isAdmin: user.is_admin 
+        isAdmin: !!user.is_admin || !!user.isAdmin
       }, JWT_SECRET);
       res.cookie('token', token, {
         httpOnly: true,
@@ -113,9 +113,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid credentials" });
       }
       const token = jwt.sign({ 
-        id: user.id, 
+        id: user._id.toString(),
         email: user.email, 
-        isAdmin: user.is_admin 
+        isAdmin: !!user.is_admin || !!user.isAdmin
       }, JWT_SECRET);
       res.cookie('token', token, {
         httpOnly: true,

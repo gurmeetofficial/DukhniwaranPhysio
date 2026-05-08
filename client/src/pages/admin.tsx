@@ -12,14 +12,14 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useAuth } from "@/components/auth/auth-provider";
 import { useLocation } from "wouter";
-import { 
-  CalendarCheck, 
-  Settings, 
-  User, 
-  Mail, 
-  Phone, 
-  Edit, 
-  X, 
+import {
+  CalendarCheck,
+  Settings,
+  User,
+  Mail,
+  Phone,
+  Edit,
+  X,
   Plus,
   Clock
 } from "lucide-react";
@@ -218,7 +218,7 @@ export default function Admin() {
   const handleUpdatePhysiotherapist = (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingPhysiotherapist) return;
-    
+
     updatePhysiotherapistMutation.mutate({
       id: editingPhysiotherapist.id,
       name: editingPhysiotherapist.name,
@@ -255,7 +255,7 @@ export default function Admin() {
 
   return (
     <div className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="page-container">
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Admin Panel</h1>
           <p className="text-xl text-gray-600">Manage bookings, therapies, and contacts</p>
@@ -331,12 +331,12 @@ export default function Admin() {
                               )}
                               <p className="flex items-center">
                                 <Clock className="h-4 w-4 mr-2" />
-                                {new Date(booking.appointmentDate).toLocaleDateString()} at{" "}
-                                {new Date(`2000-01-01T${booking.appointmentTime}`).toLocaleTimeString('en-US', { 
-                                  hour: 'numeric', 
-                                  minute: '2-digit', 
-                                  hour12: true 
-                                })}
+                                {booking.appointmentDate ? new Date(booking.appointmentDate).toLocaleDateString() : 'N/A'} at{" "}
+                                {booking.appointmentTime ? new Date(`2000-01-01T${booking.appointmentTime}`).toLocaleTimeString('en-US', {
+                                  hour: 'numeric',
+                                  minute: '2-digit',
+                                  hour12: true
+                                }) : 'N/A'}
                               </p>
                             </div>
                             <div className="mt-2">
@@ -748,7 +748,7 @@ export default function Admin() {
                     {physiotherapists?.map((physio) => (
                       <Card key={physio.id} className="text-center hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
-                          <img 
+                          <img
                             src={physio.image || "static/PhysioImages/matPilates.webp"}
                             alt={physio.name}
                             className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-medical-blue/20"
